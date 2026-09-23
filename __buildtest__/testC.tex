@@ -1,0 +1,13 @@
+\documentclass{article}
+\usepackage{circuitikz}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\begin{document}
+\begin{circuitikz}[american]
+\draw (0,0) to[resistor, l=15<\ohm>] (4,0);
+\draw (0,2) to[resistor, l=1 k<\ohm>] (4,2);
+\draw (0,4) to[resistor, l=1000<\mu F>] (4,4);
+\draw (0,6) to[resistor, l=220 k<\ohm>] (4,6);
+\draw (0,8) to[resistor, l=54<V>] (4,8);
+\end{circuitikz}
+\end{document}

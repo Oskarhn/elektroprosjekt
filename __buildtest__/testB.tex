@@ -1,0 +1,13 @@
+\documentclass{article}
+\usepackage{circuitikz}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\siunitxdefineunit{ohm}{\Omega}
+\siunitxdefineunit{microfarad}{\mu\,\text{F}}
+\begin{document}
+\begin{circuitikz}[american]
+\draw (0,0) to[resistor, l=15<ohm>] (4,0);
+\draw (0,2) to[resistor, l=1<ohm>] (4,2);
+\draw (0,4) to[resistor, l=1000<microfarad>] (4,4);
+\end{circuitikz}
+\end{document}

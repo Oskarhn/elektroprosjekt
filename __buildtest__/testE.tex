@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{circuitikz}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\begin{document}
+\begin{circuitikz}[american]
+\draw (0,0) to[battery, l=54<V>] (0,1);
+\draw (4,0.5) to[resistor, l=1 k<\ohm>] (5,0.5);
+\draw (0,2) to[resistor, l=15<V>] (0,3);
+\draw (8,1) to[capacitor, l=1000<\micro F>] (8,0);
+\draw (10,1) to[resistor, l=1 k<\ohm>] (10,0);
+\draw (9,1) to[resistor, l=220 k<\ohm>] (9,0);
+\end{circuitikz}
+\end{document}

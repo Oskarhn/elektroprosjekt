@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{circuitikz}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\begin{document}
+\begin{circuitikz}[american]
+\draw (0,0)  to[resistor, l=15\,\text{V}] (4,0);
+\draw (0,2)  to[resistor, l=15\,\ohm] (4,2);
+\draw (0,4)  to[resistor, l=15\,\text{\Omega}] (4,4);
+\draw (0,6)  to[resistor, l=\SI{15}{\ohm}] (4,6);
+\draw (0,8)  to[resistor, l=1000\,\mu\,\text{F}] (4,8);
+\draw (0,10) to[capacitor, l=\SI{1000}{\mu F}] (4,10);
+\draw (0,12) to[resistor, l=1\,k\,\Omega] (4,12);
+\draw (0,14) to[resistor, l=15\,\mathrm{\Omega}] (4,14);
+\end{circuitikz}
+\end{document}

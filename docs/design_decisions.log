@@ -1,0 +1,129 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.14)  23 SEP 2026 08:07
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**C:/Users/Oskar/Downloads/EMP(1)/Elektroprosjekt/docs/design_decisions.tex
+(C:/Users/Oskar/Downloads/EMP(1)/Elektroprosjekt/docs/design_decisions.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\Oskar\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\Oskar\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(C:\Users\Oskar\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(C:\Users\Oskar\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\enitkv@toks@=\toks19
+\labelindent=\skip51
+\enit@outerparindent=\dimen149
+\enit@toks=\toks20
+\enit@inbox=\box53
+\enit@count@id=\count283
+\enitdp@description=\count284
+)
+(C:\Users\Oskar\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count285
+)
+(C:\Users\Oskar\Downloads\EMP(1)\Elektroprosjekt\docs\design_decisions.aux)
+\openout1 = `design_decisions.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 9.
+
+Overfull \hbox (18.76884pt too wide) in paragraph at lines 16--17
+[]\OT1/cmr/bx/n/10 Enkelhet: \OT1/cmr/m/n/10 F^^Zrre kom-po-nen-ter, f^^Zrre fe
+ilk-ilder. V2-HIGHPOWER-prosjektet
+ []
+
+
+Overfull \hbox (11.97298pt too wide) in paragraph at lines 25--26
+[]\OT1/cmr/m/n/10 Bruker f^^Wa kom-po-nen-ter (MOS-FET, trans-for-ma-tor, diode
+, zener, mot-stander). 
+ []
+
+
+Overfull \hbox (40.05507pt too wide) in paragraph at lines 33--34
+[]\OT1/cmr/m/n/10 Piezotennere er ek-stremt p^^Walitelige og gener-erer >10 kV 
+uten ek-stern str^^\mforsyning. 
+ []
+
+[1
+
+{C:/Users/Oskar/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 41.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 41.
+
+Overfull \hbox (7.4924pt too wide) in paragraph at lines 52--53
+[]\OT1/cmr/bx/n/10 Spole: \OT1/cmr/m/n/10 10 AWG emal-jert kob-bertr^^Wad gir l
+av mot-stand og h^^\y str^^\mt^^Waleevne. 
+ []
+
+[2] [3]
+(C:\Users\Oskar\Downloads\EMP(1)\Elektroprosjekt\docs\design_decisions.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 838 strings out of 467871
+ 15725 string characters out of 5418376
+ 442733 words of memory out of 5000000
+ 29776 multiletter control sequences out of 15000+600000
+ 632172 words of font info for 55 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 35i,5n,38p,346b,237s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Oskar\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+1000.pk><C:/Users/Oskar/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb><C:/Users/Oskar/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/Oskar/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Oskar/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oskar/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Oskar/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on C:\Users\Oskar\Downloads\EMP(1)\Elektroprosjekt\docs\design_d
+ecisions.pdf (3 pages, 94666 bytes).
+PDF statistics:
+ 48 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

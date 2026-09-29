@@ -10,7 +10,7 @@
 
 \- \*\*Håndtak:\*\* Ergonomisk utformet for å holde batterier (5×9V) og PCB (80×80 mm).
 
-\- \*\*Hode:\*\* Rommer gnistgap og spole. Spolen monteres foran; avstanden til håndtaket bør være tilstrekkelig til at operatørens hender ikke utsettes for høye magnetfelt (feltet avtar med $1/r^3$). En avstand på minst 10 cm anbefales.
+\- \*\*Hode:\*\* Rommer gnistgap og spole. Spolen monteres foran; avstanden til håndtaket bør være tilstrekkelig til at operatørens hender ikke utsettes for høye magnetfelt. Feltet avtar med avstand, men en spesifikk sikker avstand kan ikke garanteres uten målinger.
 
 \- \*\*Utsparinger:\*\* For brytere (S1, S2, S3), LED, og piezo-knapp.
 

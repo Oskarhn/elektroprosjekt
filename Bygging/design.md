@@ -56,9 +56,9 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \- \*\*Kondensator:\*\* 100 µF, 450 V. Må ha lav ESR og tåle høye pulsstrømmer. Fotoflash-type anbefales, men egnethet må verifiseres.
 
-\- \*\*MOSFET:\*\* IRFP450 (500 V, 14 A) er en robust MOSFET med tilstrekkelige marginer.
+\- \*\*MOSFET:\*\* IRFP450 (500 V, 14 A) er en robust MOSFET. Drain-transient må måles for å bekrefte margin.
 
-\- \*\*Diode D1:\*\* To UF4007 i serie med spenningsdelingsmotstander for å oppnå nødvendig sperrespenning (>1500 V). Én enkelt UF4007 har for lav rating.
+\- \*\*Diode D1:\*\* To UF4007 i serie med spenningsdelingsmotstander for å oppnå nødvendig sperrespenning (>1350 V).
 
 \- \*\*Gnistgap:\*\* Wolframelektroder fra TIG-sveising er ideelle på grunn av høy smeltetemperatur og god erosjonsmotstand.
 
@@ -70,15 +70,17 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \- \*\*Gatebeskyttelse:\*\* En 15 V zenerdiode (D2) og en 1N4148 (D4) i serie klemmer gate-spenningen til maksimalt \~15,7 V og hindrer negativ spenning.
 
-\- \*\*Snubber over primærvikling:\*\* En RCD-snubber (D5, R2, C2) demper spenningstransienter når MOSFET-en slår seg av, og beskytter den mot overspenning fra lekkinduktans.
+\- \*\*Snubber over primærvikling:\*\* En RCD-snubber (D5, R2, C2) demper spenningstransienter når MOSFET-en slår seg av. Verdiene er veiledende og må valideres med måling av drain-spenning.
 
 
 
 \## Sikkerhet
 
-\- \*\*Manuell utladning:\*\* En trykknapp med 1 kΩ / 25 W motstand (pulsratet) lar brukeren lade ut kondensatoren trygt på \~1 sekund.
+\- \*\*Manuell utladning:\*\* En trykknapp med 1 kΩ / 25 W motstand (pulsratet) lar brukeren lade ut kondensatoren raskt.
 
-\- \*\*LED-indikator:\*\* En grønn LED med to 110 kΩ / 1 W motstander i serie (spenningsdeling) lyser når spenningen overstiger ca. 200 V. \*\*LED-en er ikke en pålitelig indikator for utladet tilstand.\*\*
+\- \*\*Passiv utladning:\*\* En permanent 1 MΩ motstand over C1 sørger for langsom utladning over tid.
+
+\- \*\*LED-indikator:\*\* En grønn LED med to 110 kΩ motstander i serie lyser når kondensatoren er ladet. Lysstyrken varierer med spenningen. \*\*LED-en er ikke en pålitelig indikator for utladet tilstand.\*\*
 
 \- \*\*Sikring:\*\* En 2 A sikring i batterikretsen beskytter mot kortslutning.
 

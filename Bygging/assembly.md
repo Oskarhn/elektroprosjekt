@@ -76,7 +76,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 1\. Plasser PCB, batterier og gnistgap i håndtaket (3D-printet). Håndtaket bør ha utsparinger for brytere og LED.
 
-2\. Koble piezo-tenneren til trigger-elektroden. Den ene ledningen fra piezo går til triggerelektroden, den andre til jord (eller en av hovedelektrodene).
+2\. Koble piezo-tenneren til trigger-elektroden. Den ene ledningen fra piezo går til triggerelektroden, den andre til jord (eller en av hovedelektrodene). Vær oppmerksom på at høyspentpulsen fra piezo kan forplante seg; vurder å isolere triggeren elektrisk.
 
 3\. Koble hovedkondensator C1 mellom utgang (katode D1b) og jord. Bruk korte, tykke ledninger (minst 2.5 mm²) for å minimere induktans.
 
@@ -92,7 +92,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 1\. Sjekk alle loddinger og tilkoblinger visuelt.
 
-2\. Uten batterier, mål motstand mellom høyspentutgang og jord – skal være uendelig (åpen krets).
+2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Forventet verdi: LED-gren (220 kΩ) parallelt med bleeder (1 MΩ) gir ca. 180 kΩ. Sjekk at det ikke er kortslutning (0 Ω).
 
 3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V i løpet av 5–10 sekunder. LED skal lyse.
 

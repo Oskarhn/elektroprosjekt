@@ -6,7 +6,7 @@
 
 \- \*\*Størrelse:\*\* 80 × 80 mm, dobbeltsidig FR4, 1.6 mm tykkelse, 35 µm kobber.
 
-\- \*\*Minimum isolasjonsavstand:\*\* 2 mm for alle spor som fører >100 V.
+\- \*\*Isolasjonsavstand:\*\* Minst 2 mm krypestrøm for spor >100 V, men endelig avstand må velges iht. gjeldende standard (f.eks. IPC-2221) for 450 V arbeidsspenning.
 
 \- \*\*Sporbredde for høye strømmer:\*\* Minst 2 mm for primærkretsen (batteri, MOSFET, transformator).
 
@@ -38,13 +38,13 @@
 
 &#x20;  - TP3: Jord (stjernejordpunkt).
 
-&#x20;  - TP4: Spenningsdeler for sikker høyspentmåling (se under).
+&#x20;  - TP4: Valgfri spenningsdeler for sikker høyspentmåling (se under).
 
 
 
-\## Spenningsdeler for høyspentmåling
+\## Spenningsdeler for høyspentmåling (valgfri)
 
-For å måle utgangsspenningen trygt med et vanlig multimeter, legg til en spenningsdeler:
+For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til en spenningsdeler:
 
 \- R13: 10 MΩ, 1 W (høyspentmotstand, f.eks. Vishay VR68)
 
@@ -86,7 +86,7 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, legg til en spenn
 
 \- \*\*Spole L1:\*\* Loddes direkte til gnistgapets utgangselektrode og jord (C1 minus).
 
-\- \*\*Piezo-trigger:\*\* To ledninger trekkes fra piezo-elementet i håndtaket til triggerelektroden i gnistgapet. Den ene ledningen kan kobles til jord.
+\- \*\*Piezo-trigger:\*\* To ledninger trekkes fra piezo-elementet i håndtaket til triggerelektroden i gnistgapet. Den ene ledningen kan kobles til jord, men vær oppmerksom på at høyspentpulsen fra piezo kan forplante seg tilbake til kretsen. Vurder å isolere triggeren elektrisk fra resten av kretsen.
 
 
 

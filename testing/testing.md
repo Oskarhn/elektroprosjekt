@@ -74,7 +74,7 @@
 
 \- Etter hver test, trykk S2 og verifiser med voltmeter at spenningen er under 10 V før du berører noe.
 
-\- Kontroller at LED-en slukker når spenningen faller under \~200 V, men stol aldri på LED-en alene.
+\- Kontroller at LED-en slukker når spenningen faller, men stol aldri på LED-en alene.
 
 
 

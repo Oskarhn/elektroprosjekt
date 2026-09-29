@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Verifikasjonsskript for EMP-generatorberegninger.
-Kjør med: python3 verify_calculations.py
+Verifikasjon av EMP-generatorberegninger.
+Kjør: python3 verify_beregninger.py
 """
-
 import math
+import numpy as np
 
 # Designparametere
 C = 100e-6          # F
@@ -12,8 +12,8 @@ V0 = 450.0          # V
 N = 4               # vindinger
 r_i = 10e-3         # m (indre radius)
 r_o = 50e-3         # m (ytre radius)
-r_avg = (r_i + r_o) / 2  # m
-w = r_o - r_i       # m
+r_avg = (r_i + r_o) / 2
+w = r_o - r_i
 
 # Wheelers formel (tommer)
 r_inch = r_avg * 39.3701
@@ -53,15 +53,51 @@ print(f"Første topptid: {t_p*1e6:.1f} µs")
 I_peak = (V0 / (omega_d * L_wheeler)) * math.exp(-alpha * t_p) * math.sin(omega_d * t_p)
 print(f"Estimert toppstrøm (R=0.1): {I_peak:.0f} A")
 
+# Periode og envelope
+T_d = 1 / f_d
+tau = 1 / alpha
+print(f"Periode: {T_d*1e6:.1f} µs")
+print(f"Envelope tidskonstant: {tau*1e6:.1f} µs")
+
 # Magnetfelt i sentrum (sum over vindinger)
-# Antar jevnt fordelte radier
+# Jevnt fordelte radier (senter av hver vinding)
 radii = [r_i + (r_o - r_i) * (k - 0.5) / N for k in range(1, N+1)]
+print(f"Vindingsradier (mm): {[r*1e3 for r in radii]}")
 B0 = sum([(4e-7 * math.pi * I_peak) / (2 * r) for r in radii])
 print(f"Estimert B(0): {B0:.3f} T")
 
 # Pickup-spenning (forenklet)
 N_pickup = 5
-A_pickup = 1e-4  # m^2
-z = 0.2  # m
+d_pickup = 0.02  # m diameter
+A_pickup = math.pi * (d_pickup/2)**2
+z = 0.2  # m avstand
 # Beregn B(z) og dB/dt
-Bz = sum([(4
+Bz = sum([(4e-7 * math.pi * I_peak * r**2) / (2 * (r**2 + z**2)**1.5) for r in radii])
+print(f"Estimert B(z={z} m): {Bz*1e3:.2f} mT")
+
+# Maksimal di/dt (numerisk fra uttrykket)
+t_vals = np.linspace(0, 5*t_p, 1000)
+i_vals = (V0 / (omega_d * L_wheeler)) * np.exp(-alpha * t_vals) * np.sin(omega_d * t_vals)
+di_dt_vals = np.gradient(i_vals, t_vals)
+max_di_dt = np.max(np.abs(di_dt_vals))
+print(f"Maks |di/dt|: {max_di_dt:.2e} A/s")
+# dB/dt = (mu0/2) * sum(1/r_k) * di/dt
+geom_factor = sum([1/r for r in radii]) * (4e-7 * math.pi / 2)
+max_dB_dt = geom_factor * max_di_dt
+print(f"Maks dB/dt ved sentrum: {max_dB_dt:.2e} T/s")
+# Pickup-spenning (skalert for avstand)
+V_pickup_max = N_pickup * A_pickup * max_dB_dt * (Bz / B0)
+print(f"Estimert pickup-spenning (z={z} m): {V_pickup_max*1e3:.1f} mV")
+
+# Utladningsmotstand
+R_discharge = 1000.0  # Ohm
+tau_rc = R_discharge * C
+print(f"Utladnings RC-tid: {tau_rc:.2f} s")
+# Initial effekt
+P_initial = V0**2 / R_discharge
+print(f"Initial effekt i R11: {P_initial:.1f} W")
+
+# Repetisjonsrate (antatt ladestrøm)
+I_charge = 30e-3  # A
+t_charge = C * V0 / I_charge
+print(f"Estimert ladetid ved {I_charge*1e3:.0f} mA: {t_charge:.1f} s")

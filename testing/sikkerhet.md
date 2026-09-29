@@ -9,10 +9,11 @@ Dette dokumentet identifiserer farer, risikoreduserende tiltak og gjenværende r
 - **Fare:** Livsfarlig elektrisk støt. Strøm gjennom kroppen kan forårsake hjertestans.
 - **Risikoreduserende tiltak:**
   - Manuell utladningskrets (1 kΩ / 25 W) med trykknapp.
-  - LED-indikator for spenning >200 V (ikke pålitelig som eneste indikator).
+  - Passiv bleeder-motstand (1 MΩ) for langsom utladning.
+  - LED-indikator for spenning (ikke pålitelig som eneste indikator).
   - Sikring (2 A) i batterikretsen.
   - Anbefalt bruk av isolerende hansker (klasse 0, minimum 1000 V) og vernebriller.
-- **Gjenværende risiko:** Kondensatoren kan holde farlig spenning i timevis hvis ikke utladet manuelt. LED kan svikte. Brukerfeil kan føre til støt. Sikringen beskytter kun batterikretsen, ikke mot utladning fra kondensatoren.
+- **Gjenværende risiko:** Kondensatoren kan holde farlig spenning i timevis hvis bleederen svikter og manuell utladning ikke utføres. LED kan svikte. Brukerfeil kan føre til støt. Sikringen beskytter kun batterikretsen, ikke mot utladning fra kondensatoren.
 
 ### 2.2 Høye strømmer og lysbue
 - **Fare:** Brannskader, brann, eksplosjon ved kortslutning.
@@ -47,9 +48,9 @@ Dette dokumentet identifiserer farer, risikoreduserende tiltak og gjenværende r
 - **Gjenværende risiko:** Måleoppsettet er ikke validert for de aktuelle transientene.
 
 ### 2.7 Restenergi etter frakobling
-- **Fare:** Kondensatoren kan holde 10 J i timevis. Utladningsveier er den manuelle kretsen og LED-grenen (høy impedans, ikke sikker).
+- **Fare:** Kondensatoren kan holde 10 J i timevis. Utladningsveier er den manuelle kretsen, bleederen (1 MΩ) og LED-grenen (høy impedans, ikke sikker).
 - **Risikoreduserende tiltak:** Prosedyre for utladning og spenningsmåling.
-- **Gjenværende risiko:** Hvis utladningsbryter eller motstand svikter, finnes ingen rask utladningsvei. LED-grenen kan tømme kondensatoren over tid, men dette er ikke en pålitelig sikkerhetsmekanisme.
+- **Gjenværende risiko:** Hvis utladningsbryter eller motstand svikter, finnes ingen rask utladningsvei. Bleederen tømmer kondensatoren over tid (tidskonstant ~100 s), men dette er ikke en pålitelig sikkerhetsmekanisme alene.
 
 ### 2.8 Svikt i utladningsbryter
 - **Fare:** Bruker kan tro at kondensatoren er utladet og berøre spenningsførende deler.
@@ -67,7 +68,7 @@ Dette dokumentet identifiserer farer, risikoreduserende tiltak og gjenværende r
 - **Gjenværende risiko:** Utilstrekkelig skjerming; rekkevidde for interferens er ukjent.
 
 ## 3. Sikkerhetsprosedyrer
-Se `assembly.md` og `testing.md` for detaljerte instruksjoner. Følgende overordnede regler gjelder:
+Se `Bygging/assembly.md` og `testing/testing.md` for detaljerte instruksjoner. Følgende overordnede regler gjelder:
 - Alltid utlad kondensatoren manuelt før berøring (hold utladningsknappen i minst 5 sekunder, verifiser med multimeter).
 - Bruk aldri LED-en som eneste indikator på utladet tilstand.
 - Bruk personlig verneutstyr.
@@ -76,7 +77,7 @@ Se `assembly.md` og `testing.md` for detaljerte instruksjoner. Følgende overord
 
 ## 4. Mangler og videre arbeid
 - Fysisk prototype må bygges og testes for å validere sikkerheten.
-- En automatisk utladningsmekanisme (bleeder-motstand) bør vurderes for å redusere avhengigheten av manuell prosedyre.
+- Bleeder-motstanden gir passiv utladning, men en raskere automatisk utladningsmekanisme kan vurderes.
 - Kapsling må designes og verifiseres for å hindre berøring av spenningsførende deler.
 - Måleoppsett for høyspenning må kvalifiseres (prober, isolasjon).
 - Full feilanalyse (FMEA) bør utføres.

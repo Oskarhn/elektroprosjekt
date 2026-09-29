@@ -1,230 +1,144 @@
-\\documentclass{article}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\title{Detaljerte beregninger for EMP-generator (10 J)}
+\author{}
+\date{}
 
-\\usepackage\[utf8]{inputenc}
+\begin{document}
+\maketitle
 
-\\usepackage{amsmath, amssymb}
+\textbf{Merk: Alle beregninger er teoretiske. Faktiske verdier avhenger av målte parametere som spoleinduktans, motstand og gnistgapkarakteristikk.}
 
-\\usepackage{siunitx}
+\section{Hovedkondensator og spole}
 
-\\usepackage{booktabs}
+\subsection{Spesifikasjoner}
+\begin{itemize}
+\item Kondensator: $C = 100\,\mu\text{F}$, merkespenning $450\,\text{V}$ (lades til $V_0 = 450\,\text{V}$)
+\item Spole: Flat spiral, $N = 4$ vindinger, indre diameter $20\,\text{mm}$, ytre diameter $100\,\text{mm}$, tråd: $10\,\text{AWG}$ ($2.588\,\text{mm}$ diameter)
+\end{itemize}
 
-\\title{Detaljerte beregninger for EMP-generator (10 J)}
+\subsection{Induktans for flat spiralspole (Wheelers formel)}
+Indre radius $r_i = 10\,\text{mm}$, ytre radius $r_o = 50\,\text{mm}$.
+Middelradius $r = (r_i + r_o)/2 = 30\,\text{mm} = 0.03\,\text{m}$.
+Viklingsbredde $w = r_o - r_i = 40\,\text{mm} = 0.04\,\text{m}$.
+I tommer: $r = 1.1811''$, $w = 1.5748''$.
+\begin{equation}
+L = \frac{r^2 N^2}{8r + 11w} = \frac{1.1811^2 \cdot 4^2}{8 \cdot 1.1811 + 11 \cdot 1.5748} = \frac{1.395 \cdot 16}{9.4488 + 17.3228} = \frac{22.32}{26.7716} \approx 0.8336\,\mu\text{H}.
+\end{equation}
+Vi bruker $L = 0.83\,\mu\text{H}$ som et estimat. Målt verdi kan avvike betydelig ($\pm 20\%$ eller mer).
 
-\\author{}
+\subsection{Energi lagret i kondensator}
+\begin{equation}
+E_0 = \frac{1}{2} C V_0^2 = 0.5 \cdot 100 \times 10^{-6} \cdot 450^2 = 10.125\,\text{J} \approx 10\,\text{J}.
+\end{equation}
 
-\\date{}
+\section{Toppstrøm og pulsform}
 
+\subsection{Karakteristisk impedans}
+\begin{equation}
+Z_0 = \sqrt{\frac{L}{C}} = \sqrt{\frac{0.83 \times 10^{-6}}{100 \times 10^{-6}}} = \sqrt{0.0083} \approx 0.0911\,\Omega.
+\end{equation}
 
+\subsection{Toppstrøm (ideell, tapsfri)}
+\begin{equation}
+I_{\text{peak, ideal}} = \frac{V_0}{Z_0} = \frac{450}{0.0911} \approx 4940\,\text{A}.
+\end{equation}
 
-\\begin{document}
-
-\\maketitle
-
-
-
-\\textbf{Alle beregninger er sjekket tre ganger for konsistens og fysisk rimelighet.}
-
-
-
-\\section{Hovedkondensator og spole}
-
-
-
-\\subsection{Spesifikasjoner}
-
-\\begin{itemize}
-
-\\item Kondensator: $C = 100\\,\\mu\\text{F}$, merkespenning $450\\,\\text{V}$ (lades til $V\_0 = 450\\,\\text{V}$)
-
-\\item Spole: Flat spiral, $N = 4$ vindinger, indre diameter $20\\,\\text{mm}$, ytre diameter $100\\,\\text{mm}$, tråd: $10\\,\\text{AWG}$ ($2.588\\,\\text{mm}$ diameter)
-
-\\end{itemize}
-
-
-
-\\subsection{Induktans for flat spiralspole (Wheelers formel)}
-
-Middelradius $r = (20+100)/2 = 60\\,\\text{mm} = 0.06\\,\\text{m}$, viklingsbredde $w = 40\\,\\text{mm} = 0.04\\,\\text{m}$.
-
-I tommer: $r = 2.362''$, $w = 1.575''$.
-
-\\begin{equation}
-
-L = \\frac{r^2 N^2}{8r + 11w} = \\frac{2.362^2 \\cdot 4^2}{8 \\cdot 2.362 + 11 \\cdot 1.575} = \\frac{5.579 \\cdot 16}{18.896 + 17.325} = \\frac{89.264}{36.221} \\approx 2.464\\,\\mu\\text{H}.
-
-\\end{equation}
-
-Vi bruker $L = 2.5\\,\\mu\\text{H}$ som et konservativt estimat. (Målt verdi kan avvike $\\pm 20\\%$.)
-
-
-
-\\subsection{Energi lagret i kondensator}
-
-\\begin{equation}
-
-E\_0 = \\frac{1}{2} C V\_0^2 = 0.5 \\cdot 100 \\times 10^{-6} \\cdot 450^2 = 10.125\\,\\text{J} \\approx 10\\,\\text{J}.
-
-\\end{equation}
-
-
-
-\\section{Toppstrøm og pulsform}
-
-
-
-\\subsection{Karakteristisk impedans}
-
-\\begin{equation}
-
-Z\_0 = \\sqrt{\\frac{L}{C}} = \\sqrt{\\frac{2.5 \\times 10^{-6}}{100 \\times 10^{-6}}} = \\sqrt{0.025} = 0.158\\,\\Omega.
-
-\\end{equation}
-
-
-
-\\subsection{Toppstrøm (ideell, tapsfri)}
-
-\\begin{equation}
-
-I\_{\\text{peak, ideal}} = \\frac{V\_0}{Z\_0} = \\frac{450}{0.158} \\approx 2848\\,\\text{A}.
-
-\\end{equation}
-
-
-
-\\subsection{Demping og reell toppstrøm}
-
-Total motstand $R$ i kretsen er dominert av ESR i kondensator, ledningsmotstand og lysbuemotstand. Vi antar $R \\approx 0.1\\,\\Omega$ (basert på typiske verdier; lysbuemotstand kan være lavere). Dempingsfaktor:
-
-\\begin{equation}
-
-\\alpha = \\frac{R}{2L} = \\frac{0.1}{2 \\cdot 2.5 \\times 10^{-6}} = 20\\,000\\,\\text{s}^{-1}.
-
-\\end{equation}
-
+\subsection{Dempet RLC-analyse}
+Total motstand $R$ i kretsen er dominert av ESR i kondensator, ledningsmotstand og lysbuemotstand. Vi antar $R \approx 0.1\,\Omega$ (må verifiseres eksperimentelt). Dempingsfaktor:
+\begin{equation}
+\alpha = \frac{R}{2L} = \frac{0.1}{2 \cdot 0.83 \times 10^{-6}} \approx 60241\,\text{s}^{-1}.
+\end{equation}
 Resonansvinkelfrekvens:
-
-\\begin{equation}
-
-\\omega\_0 = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{2.5 \\times 10^{-6} \\cdot 100 \\times 10^{-6}}} = \\frac{1}{\\sqrt{2.5 \\times 10^{-10}}} = \\frac{1}{1.581 \\times 10^{-5}} \\approx 63\\,246\\,\\text{rad/s}.
-
-\\end{equation}
-
-Frekvens: $f = \\omega\_0/(2\\pi) \\approx 10.07\\,\\text{kHz}$.
-
-Siden $\\alpha < \\omega\_0$, er kretsen underdempet. Toppstrømmen reduseres noe av dempingen; et realistisk estimat er $\\sim 2500$--$3000$ A. Vi bruker $3000$ A som dimensjonerende verdi.
-
-
-
-\\subsection{Pulsvarighet}
-
-Periode: $T = 1/f \\approx 99.3\\,\\mu\\text{s}$. Tidskonstant for innhyllingskurven: $\\tau = 1/\\alpha = 50\\,\\mu\\text{s}$. Etter $5\\tau \\approx 250\\,\\mu\\text{s}$ er svingningene nesten borte. Pulsens halvverdibredde er ca. $50\\,\\mu\\text{s}$.
-
-
-
-\\section{Magnetfelt}
-
-
-
-\\subsection{Felt i sentrum av spolen}
-
-\\begin{equation}
-
-B = \\frac{\\mu\_0 N I}{2r} = \\frac{4\\pi \\times 10^{-7} \\cdot 4 \\cdot 3000}{2 \\cdot 0.06} = \\frac{1.508 \\times 10^{-2}}{0.12} \\approx 0.126\\,\\text{T}.
-
-\\end{equation}
-
-Med $I = 3000$ A får vi $\\sim 0.13$ T.
-
-
-
-\\subsection{Feltets avtagning med avstand}
-
-For $d = 10\\,\\text{cm}$ ($0.1\\,\\text{m}$) fra sentrum:
-
-\\begin{equation}
-
-B(d) \\approx B\_0 \\left( \\frac{r}{\\sqrt{r^2 + d^2}} \\right)^3 = 0.126 \\left( \\frac{0.06}{\\sqrt{0.06^2 + 0.1^2}} \\right)^3 = 0.126 \\cdot 0.514^3 = 0.126 \\cdot 0.136 \\approx 0.0171\\,\\text{T}.
-
-\\end{equation}
-
-
-
-\\section{Indusert spenning i test-sløyfe}
-
-Med $N\_p = 5$ vindinger, areal $A\_p = \\pi \\times (0.01)^2 = 3.14 \\times 10^{-4}\\,\\text{m}^2$ (diameter $2\\,\\text{cm}$), $\\Delta t \\approx T/4 = 25\\,\\mu\\text{s}$, $B\_{\\text{max}} = 0.0171\\,\\text{T}$:
-
-\\begin{equation}
-
-\\mathcal{E} \\approx -N\_p A\_p \\frac{\\Delta B}{\\Delta t} = -5 \\cdot 3.14 \\times 10^{-4} \\cdot \\frac{0.0171}{25 \\times 10^{-6}} \\approx -1.07\\,\\text{V}.
-
-\\end{equation}
-
-Dette er et teoretisk estimat; faktisk $dB/dt$ kan være høyere på grunn av raskere stigetid.
-
-
-
-\\section{Komponentpåkjenninger}
-
-
-
-\\subsection{MOSFET i ladekrets}
-
-Under avslag kan drain-spenningen nå opp til $2 \\times V\_{\\text{bat}} + V\_{\\text{reflektert}} + \\text{lekkinduktansspike}$. Med $V\_{\\text{bat}} = 45\\,\\text{V}$ og viklingsforhold $n = 200/10 = 20$, er reflektert spenning $V\_{\\text{ut}}/n = 450/20 = 22.5\\,\\text{V}$. Total spenning uten snubber: $2 \\cdot 45 + 22.5 = 112.5\\,\\text{V}$ pluss spike. Med RCD-snubber dempes spiken til under $200\\,\\text{V}$. IRFP450 tåler $500\\,\\text{V}$, så marginen er god ($>2\\times$).
-
-
-
-\\subsection{Dioder}
-
-UF4007 tåler $1000\\,\\text{V}$ repeterende. I verste fall kan utgangsspenningen nå $450\\,\\text{V}$, så marginen er over $2\\times$.
-
-
-
-\\subsection{Gnistgap}
-
-Wolframelektroder har et smeltepunkt på $3422\\,^{\\circ}\\text{C}$ og tåler ekstremt høye pulsstrømmer uten å erodere nevneverdig.
-
-
-
-\\subsection{Snubber-komponenter}
-
-R2 og C2 dimensjoneres for å absorbere lekkinduktansenergien. Med en antatt lekkinduktans på $5\\%$ av primærinduktansen ($50\\,\\mu\\text{H} \\rightarrow 2.5\\,\\mu\\text{H}$) og toppstrøm $\\sim 2\\,\\text{A}$, er energien $\\frac{1}{2} L\_{\\text{leak}} I^2 = 0.5 \\cdot 2.5 \\times 10^{-6} \\cdot 4 = 5\\,\\mu\\text{J}$. En $10\\,\\text{nF}$ kondensator og $10\\,\\text{k}\\Omega$ motstand gir en tidskonstant på $100\\,\\mu\\text{s}$, som er tilstrekkelig.
-
-
-
-\\section{Termiske betraktninger (hypotetiske)}
-
-Energifordelingen er ukjent. Eksempel: Hvis $20\\%$ av $10\\,\\text{J}$ ($2\\,\\text{J}$) går til oppvarming av spolen (masse $\\sim 89\\,\\text{g}$, varmekapasitet $385\\,\\text{J/(kg·K)}$):
-
-\\begin{equation}
-
-\\Delta T \\approx \\frac{2}{0.089 \\cdot 385} \\approx 0.058\\,\\text{K}.
-
-\\end{equation}
-
-For kondensator (masse $\\sim 30\\,\\text{g}$, varmekapasitet $\\sim 30\\,\\text{J/K}$) med $30\\%$ tap ($3\\,\\text{J}$):
-
-\\begin{equation}
-
-\\Delta T \\approx \\frac{3}{30} = 0.1\\,\\text{K}.
-
-\\end{equation}
-
+\begin{equation}
+\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{0.83 \times 10^{-6} \cdot 100 \times 10^{-6}}} = \frac{1}{\sqrt{8.3 \times 10^{-11}}} \approx 109719\,\text{rad/s}.
+\end{equation}
+Dempet vinkelfrekvens:
+\begin{equation}
+\omega_d = \sqrt{\omega_0^2 - \alpha^2} = \sqrt{109719^2 - 60241^2} \approx 91700\,\text{rad/s}.
+\end{equation}
+Frekvens: $f_d = \omega_d/(2\pi) \approx 14.6\,\text{kHz}$.
+
+Første topp inntreffer ved $t_p$ der $\tan(\omega_d t_p) = \omega_d/\alpha$:
+\begin{equation}
+\omega_d t_p = \arctan(91700/60241) \approx 0.99\,\text{rad} \Rightarrow t_p = 0.99/91700 \approx 10.8\,\mu\text{s}.
+\end{equation}
+Toppstrøm:
+\begin{equation}
+I_{\text{peak}} = \frac{V_0}{\omega_d L} e^{-\alpha t_p} \sin(\omega_d t_p) = \frac{450}{91700 \cdot 0.83\times10^{-6}} e^{-0.650} \cdot 0.836 \approx 5913 \cdot 0.522 \cdot 0.836 \approx 2580\,\text{A}.
+\end{equation}
+Med antatt $R=0.1\,\Omega$ er toppstrømmen $\sim 2600$ A. Denne verdien er følsom for $R$ og må måles.
+
+\subsection{Pulsvarighet}
+Periode: $T_d = 1/f_d \approx 68.5\,\mu\text{s}$. Tidskonstant for innhyllingskurven: $\tau = 1/\alpha \approx 16.6\,\mu\text{s}$. Etter $5\tau \approx 83\,\mu\text{s}$ er svingningene nesten borte.
+
+\section{Magnetfelt}
+
+\subsection{Felt i sentrum av spolen (sum over vindinger)}
+Antar jevnt fordelte vindinger med radier: $r_1 = 10\,\text{mm}$, $r_2 = 23.33\,\text{mm}$, $r_3 = 36.67\,\text{mm}$, $r_4 = 50\,\text{mm}$.
+\begin{equation}
+B(0) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{1}{r_k} = \frac{4\pi\times10^{-7} \cdot 2600}{2} \left( \frac{1}{0.01} + \frac{1}{0.02333} + \frac{1}{0.03667} + \frac{1}{0.05} \right).
+\end{equation}
+Summen av $1/r_k$: $100 + 42.86 + 27.27 + 20 = 190.13\,\text{m}^{-1}$.
+\begin{equation}
+B(0) = 1.633\times10^{-3} \cdot 190.13 \approx 0.31\,\text{T}.
+\end{equation}
+Dette er et estimat; faktisk felt kan avvike på grunn av spiralform og trådtykkelse.
+
+\subsection{Feltets avtagning med avstand}
+For $z = 0.2\,\text{m}$:
+\begin{equation}
+B(z) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{r_k^2}{(r_k^2 + z^2)^{3/2}}.
+\end{equation}
+Beregner hvert ledd:
+\begin{align}
+r_1 &: \frac{0.01^2}{(0.01^2+0.2^2)^{1.5}} = \frac{1\times10^{-4}}{0.0401^{1.5}} \approx 0.01244, \\
+r_2 &: \frac{0.02333^2}{0.04054^{1.5}} \approx 0.0667, \\
+r_3 &: \frac{0.03667^2}{0.04134^{1.5}} \approx 0.160, \\
+r_4 &: \frac{0.05^2}{0.0425^{1.5}} \approx 0.285.
+\end{align}
+Sum: $0.524$. $B(0.2) = 1.633\times10^{-3} \cdot 0.524 \approx 8.6\times10^{-4}\,\text{T} = 0.86\,\text{mT}$.
+
+\section{Indusert spenning i pickup-spole}
+Pickup-spole: $N_p = 5$, areal $A_p = 1\,\text{cm}^2 = 1\times10^{-4}\,\text{m}^2$, plassert på aksen i avstand $z = 0.2\,\text{m}$.
+Maksimal $dB/dt$: $B(0.2) \cdot \omega_d = 8.6\times10^{-4} \cdot 91700 \approx 78.9\,\text{T/s}$.
+\begin{equation}
+\mathcal{E}_{\text{max}} = N
+\mathcal{E}_{\text{max}} = N_p A_p \frac{dB}{dt} \approx 5 \cdot 1\times10^{-4} \cdot 78.9 \approx 0.0395\,\text{V} = 39.5\,\text{mV}.
+\end{equation}
+Dette er et estimat; faktisk verdi avhenger av nøyaktig geometri, orientering og strømpulsform.
+
+\section{Komponentpåkjenninger}
+
+\subsection{MOSFET i ladekrets}
+Under avslag kan drain-spenningen nå $V_{\text{ds}} = V_{\text{bat}} + V_{\text{reflektert}} + V_{\text{leak}}$. Med $V_{\text{bat}} = 45\,\text{V}$, viklingsforhold $n = N_s/N_p = 200/10 = 20$, reflektert spenning $V_{\text{reflektert}} = V_{\text{ut}}/n = 450/20 = 22.5\,\text{V}$. Lekkinduktansspike kan være betydelig; snubberen demper den, men uten måling kan vi ikke angi eksakt verdi. IRFP450 tåler $500\,\text{V}$, så marginen er sannsynligvis tilstrekkelig, men må verifiseres.
+
+\subsection{Dioder}
+UF4007 har $1000\,\text{V}$ sperrespenning. For flyback-utgangen er reversspenningen $V_{\text{rev}} = V_{\text{ut}} + V_{\text{bat}}/n = 450 + 45/20 = 452.25\,\text{V}$ pluss transienter. Én UF4007 er marginal; vi anbefaler to i serie med spenningsdelingsmotstander ($10\,\text{M}\Omega$ over hver) for å oppnå $>1500\,\text{V}$ rating.
+
+\subsection{Gnistgap}
+Wolframelektroder har et smeltepunkt på $3422\,^{\circ}\text{C}$ og tåler høye pulsstrømmer. Avstanden på $0.5\,\text{mm}$ gir en naturlig gjennomslagsspenning på ca. $1500\,\text{V}$ i tørr luft, men med trigging kan den utløses ved lavere spenning. Faktisk triggespenning må karakteriseres eksperimentelt.
+
+\subsection{Snubber-komponenter}
+R2 og C2 dimensjoneres for å absorbere lekkinduktansenergien. Med antatt lekkinduktans $L_{\text{leak}} \approx 5\%$ av $L_p$ ($130\,\mu\text{H} \rightarrow 6.5\,\mu\text{H}$) og toppstrøm $\sim 2\,\text{A}$, er energien $\frac{1}{2} L_{\text{leak}} I^2 = 0.5 \cdot 6.5\times10^{-6} \cdot 4 = 13\,\mu\text{J}$. En $10\,\text{nF}$ kondensator og $10\,\text{k}\Omega$ motstand gir en tidskonstant på $100\,\mu\text{s}$, som er tilstrekkelig.
+
+\section{Termiske betraktninger (hypotetiske)}
+Energifordelingen er ukjent. Eksempel: Hvis $20\%$ av $10\,\text{J}$ ($2\,\text{J}$) går til oppvarming av spolen (masse $\sim 89\,\text{g}$, varmekapasitet $385\,\text{J/(kg·K)}$):
+\begin{equation}
+\Delta T \approx \frac{2}{0.089 \cdot 385} \approx 0.058\,\text{K}.
+\end{equation}
+For kondensator (masse $\sim 30\,\text{g}$, varmekapasitet $\sim 30\,\text{J/K}$) med $30\%$ tap ($3\,\text{J}$):
+\begin{equation}
+\Delta T \approx \frac{3}{30} = 0.1\,\text{K}.
+\end{equation}
 Lokale varmepunkter kan likevel oppstå. Gjentatte pulser krever kjøling.
 
+\section{Repetisjonsrate}
+Ladestrømmen fra flyback-omformeren er i gjennomsnitt ca. $20$--$50\,\text{mA}$. For å lade $100\,\mu\text{F}$ til $450\,\text{V}$ trengs $Q = C \cdot V = 0.045\,\text{C}$. Med $30\,\text{mA}$ tar det $t = Q/I = 0.045/0.03 = 1.5\,\text{sekunder}$. I praksis vil strømmen avta etter hvert som spenningen stiger, så ladetid $2$--$5\,\text{sekunder}$ er realistisk. Repetisjonsraten blir da $0.2$--$0.5\,\text{Hz}$. Med alkaliske 9V-batterier er dette maksimalt; LiPo-batterier kan gi høyere strøm og raskere lading.
 
-
-\\section{Repetisjonsrate}
-
-Ladestrømmen fra flyback-omformeren er i gjennomsnitt ca. $20$--$50\\,\\text{mA}$. For å lade $100\\,\\mu\\text{F}$ til $450\\,\\text{V}$ trengs $Q = C \\cdot V = 0.045\\,\\text{C}$. Med $30\\,\\text{mA}$ tar det $t = Q/I = 0.045/0.03 = 1.5\\,\\text{sekunder}$. I praksis vil strømmen avta etter hvert som spenningen stiger, så ladetid $2$--$5\\,\\text{sekunder}$ er realistisk. Repetisjonsraten blir da $0.2$--$0.5\\,\\text{Hz}$. For å oppnå $1$--$2\\,\\text{Hz}$ kan man øke batterispenningen eller redusere kapasitansen (f.eks. $47\\,\\mu\\text{F}$ gir $\\sim 5\\,\\text{J}$ og raskere lading). Designet kan enkelt tilpasses.
-
-
-
-\\section{Konklusjon}
-
-Alle beregninger er teoretiske og konservative. Fysisk prototype må bygges og måles for å bekrefte ytelse og sikkerhet.
-
-\\end{document}
-
-
-
+\section{Konklusjon}
+Alle beregninger er teoretiske og avhenger av antatte parametere. Fysisk prototype må bygges og måles for å bekrefte ytelse og sikkerhet.
+\end{document}

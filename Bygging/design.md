@@ -4,13 +4,13 @@
 
 \## Overordnet topologi
 
-Vi har valgt en enkel kondensatorbank (én stor kondensator) med et selvutløsende gnistgap (relaksasjonsoscillator). Dette gir:
+Vi har valgt en kondensatorbank (én stor kondensator) med et trigget gnistgap. Dette gir:
 
-\- \*\*Enkelhet:\*\* Færre komponenter – ingen separat triggerkrets.
+\- \*\*Kontrollert utløsning:\*\* En piezoelektrisk tenner ioniserer gapet uavhengig av spenningen, slik at vi kan fyre når vi vil.
 
-\- \*\*Automatisk repetisjon:\*\* Når ladeknappen holdes inne, lades kondensatoren til \~450 V, gnistgapet slår gjennom, og pulsen fyres. Syklusen gjentar seg automatisk.
+\- \*\*Høy strøm:\*\* En 100 µF kondensator gir \~2600 A ved 450 V, noe som gir et kraftig magnetfelt.
 
-\- \*\*Høy strøm:\*\* En enkelt 100 µF kondensator gir \~3000 A ved moderat spenning, noe som er ideelt for magnetfeltgenerering.
+\- \*\*Repeterbarhet:\*\* Ladekretsen lader kondensatoren på noen sekunder; repetisjonsrate bestemmes av ladeeffekten.
 
 \- \*\*Håndholdbarhet:\*\* Komponentene er kompakte og lette.
 
@@ -28,9 +28,15 @@ En selvoscillerende flyback-omformer er valgt fordi den:
 
 
 
-\## Gnistgap – selvutløsende
+\## Gnistgap – trigget
 
-I stedet for et trigget gnistgap bruker vi et enkelt gnistgap med fast avstand (\~0,5 mm). Når spenningen over kondensatoren når gjennomslagsspenningen for gapet (ca. 450 V for 0,5 mm i tørr luft), ioniseres luften og en gnist dannes spontant. Dette kobler kondensatoren til spolen og utløser pulsen. Etter utladning faller spenningen til null, gnisten slukker, og ladingen starter på nytt. Dette gir en selvregulerende oscillator uten ekstra elektronikk.
+Et trigget gnistgap med piezotennmekanisme er valgt fordi:
+
+\- Det gir full kontroll over avfyringstidspunktet.
+
+\- Piezotennere genererer >10 kV uten ekstern strømforsyning.
+
+\- Gapet kan ha en avstand på \~0,5 mm, som er praktisk å lage, og likevel trigges pålitelig selv om spenningen er lavere enn den naturlige gjennomslagsspenningen.
 
 
 
@@ -40,7 +46,7 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \- Gir et konsentrert magnetfelt foran spolen.
 
-\- Har lav induktans (\~2,5 µH), noe som gir høy di/dt og dermed høy indusert spenning.
+\- Har lav induktans (\~0,83 µH), noe som gir høy di/dt og dermed høy indusert spenning.
 
 \- Er enkel å lage med 3D-printet form.
 
@@ -48,11 +54,11 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \## Komponentvalg
 
-\- \*\*Kondensator:\*\* 100 µF, 450 V, fotoflash-type. Disse er spesielt designet for høye pulsstrømmer og har lav ESR.
+\- \*\*Kondensator:\*\* 100 µF, 450 V. Må ha lav ESR og tåle høye pulsstrømmer. Fotoflash-type anbefales, men egnethet må verifiseres.
 
-\- \*\*MOSFET:\*\* IRFP450 (500 V, 14 A) er en robust MOSFET med lav Rds(on) og høy strømtåleevne.
+\- \*\*MOSFET:\*\* IRFP450 (500 V, 14 A) er en robust MOSFET med tilstrekkelige marginer.
 
-\- \*\*Diode:\*\* UF4007 er en rask diode med 1000 V sperrespenning.
+\- \*\*Diode D1:\*\* To UF4007 i serie med spenningsdelingsmotstander for å oppnå nødvendig sperrespenning (>1500 V). Én enkelt UF4007 har for lav rating.
 
 \- \*\*Gnistgap:\*\* Wolframelektroder fra TIG-sveising er ideelle på grunn av høy smeltetemperatur og god erosjonsmotstand.
 
@@ -70,9 +76,9 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \## Sikkerhet
 
-\- \*\*Manuell utladning:\*\* En trykknapp med 1 kΩ / 10 W motstand lar brukeren lade ut kondensatoren trygt på \~1 sekund.
+\- \*\*Manuell utladning:\*\* En trykknapp med 1 kΩ / 25 W motstand (pulsratet) lar brukeren lade ut kondensatoren trygt på \~1 sekund.
 
-\- \*\*LED-indikator:\*\* En grønn LED med 220 kΩ / 1 W motstand lyser når spenningen overstiger ca. 200 V.
+\- \*\*LED-indikator:\*\* En grønn LED med to 110 kΩ / 1 W motstander i serie (spenningsdeling) lyser når spenningen overstiger ca. 200 V. \*\*LED-en er ikke en pålitelig indikator for utladet tilstand.\*\*
 
 \- \*\*Sikring:\*\* En 2 A sikring i batterikretsen beskytter mot kortslutning.
 

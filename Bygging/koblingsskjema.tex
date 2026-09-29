@@ -2,7 +2,7 @@
 \usepackage{circuitikz}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
-\title{Kretsskjema for EMP-generator (10 J, selvutløsende)}
+\title{Kretsskjema for EMP-generator (10 J, trigget gnistgap)}
 \author{}
 \date{}
 
@@ -17,32 +17,40 @@
 \draw (0,2) to[switch, l=S3] (2,2);
 % Ladeknapp S1
 \draw (2,2) to[switch, l=S1] (4,2);
-% Primærvikling (10 t)
-\draw (4,2) to[inductor, l=10\,t] (4,0.5);
+% Primærvikling (10 t) med prikk
+\draw (4,2) to[inductor, l=10\,t, name=prim] (4,0.5);
+\node at (3.5,1.25) {$\bullet$};
 % MOSFET Q1 (IRFP450)
 \draw (4,0.5) node[nmos, anchor=drain] (Q1) {};
 \draw (Q1.source) to (0,0);
 % Snubber over primær: D5, R2, C2
 \draw (4,2) to[diode, l=D5] (5.5,2) to[resistor, l=R2] (5.5,1) to[capacitor, l=C2] (5.5,0) -- (4,0.5);
-% Tilbakekoblingsvikling (5 t)
-\draw (4,2) -- (6,2) to[inductor, l=5\,t] (6,0.5);
+% Tilbakekoblingsvikling (5 t) med prikk
+\draw (4,2) -- (6,2) to[inductor, l=5\,t, name=fb] (6,0.5);
+\node at (6.5,1.25) {$\bullet$};
 \draw (6,0.5) to[resistor, l=R1] (Q1.gate);
 % Zener D2 (15V) og diode D4 (1N4148) i serie fra gate til source
 \draw (Q1.gate) to[diode, l=D4] ++(0,-1) to[Zener diode, l=D2] (Q1.source);
-% Sekundærvikling (200 t)
-\draw (4,2) -- (4,3) to[inductor, l=200\,t] (8,3);
-% Diode D1 (UF4007)
-\draw (8,3) to[diode, l=D1] (8,1);
+% Sekundærvikling (200 t) med prikk
+\draw (4,2) -- (4,3) to[inductor, l=200\,t, name=sec] (8,3);
+\node at (6,3.5) {$\bullet$};
+% Diode D1 (to UF4007 i serie med spenningsdelere)
+\draw (8,3) to[diode, l=D1a] (8,2) to[diode, l=D1b] (8,1);
+% Spenningsdelingsmotstander over diodene
+\draw (8,3) -- (9,3) to[resistor, l=10\,M$\Omega$] (9,2) -- (8,2);
+\draw (8,2) -- (9,2) to[resistor, l=10\,M$\Omega$] (9,1) -- (8,1);
 % Hovedkondensator C1 (100 µF)
 \draw (8,1) to[capacitor, l=C1] (8,0) -- (0,0);
 % Utladningskrets: S2 og R11
 \draw (8,1) -- (10,1) to[switch, l=S2] (10,0) to[resistor, l=R11] (10,-1) -- (0,-1) -- (0,0);
-% LED-indikator: D3 og R12
-\draw (8,1) -- (9,1) to[resistor, l=R12] (9,0) to[led, l=D3] (9,-1) -- (0,-1);
-% Gnistgap G1 (selvutløsende)
+% LED-indikator: D3 og to 110k motstander i serie
+\draw (8,1) -- (9,1) to[resistor, l=110\,k$\Omega$] (9,0) to[resistor, l=110\,k$\Omega$] (9,-1) to[led, l=D3] (9,-2) -- (0,-2) -- (0,-1);
+% Gnistgap G1 (trigget)
 \draw (8,1) -- (8,2) to[sparkgap, l=G1] (8,3);
 % Spole L1
 \draw (8,3) -- (10,3) to[inductor, l=L1] (10,1) -- (8,1);
+% Piezo-trigger
+\draw (8,2.5) -- (7,2.5) node[left] {Piezo};
 % Jord
 \draw (0,0) node[ground] {};
 \end{circuitikz}
@@ -50,23 +58,23 @@
 \vspace{1cm}
 \textbf{Komponentliste:}
 \begin{itemize}
-\item S3: Hovedbryter (vippebryter)
-\item S1: Ladeknapp (momentan)
-\item S2: Utladningsknapp (momentan)
+\item S3: Hovedbryter (vippebryter, minimum 250 V DC)
+\item S1: Ladeknapp (momentan, lavspent)
+\item S2: Utladningsknapp (momentan, minimum 450 V DC, 0.5 A)
 \item Q1: IRFP450 N-kanal MOSFET
-\item D1: UF4007 rask diode
+\item D1a, D1b: To UF4007 i serie (hver med 10 M$\Omega$ parallelt)
 \item D2: 15 V zenerdiode (BZX55C15)
 \item D3: Grønn LED
 \item D4: 1N4148 signaldiode (gatebeskyttelse)
 \item D5: UF4007 (snubber-diode)
 \item R1: 1 k$\Omega$ (gate-motstand)
 \item R2: 10 k$\Omega$ (snubber-motstand)
-\item R11: 1 k$\Omega$ / 10 W (utladningsmotstand)
-\item R12: 220 k$\Omega$ / 1 W (LED-strømbegrenser)
-\item C1: 100 µF / 450 V elektrolytisk (fotoflash)
+\item R11: 1 k$\Omega$ / 25 W (utladningsmotstand, pulsratet)
+\item R12a, R12b: To 110 k$\Omega$ / 1 W i serie (LED-strømbegrenser)
+\item C1: 100 µF / 450 V elektrolytisk (puls-egnet)
 \item C2: 10 nF / 500 V keramisk (snubber)
-\item T1: Ferritttransformator (10:200:5 viklinger)
-\item G1: Gnistgap (wolframelektroder, fast avstand ~0.5 mm)
+\item T1: Ferritttransformator (10:200:5 viklinger, E20/10/6 kjerne, N27, med luftgap)
+\item G1: Trigget gnistgap (wolframelektroder, ~0.5 mm, med triggerelektrode)
 \item L1: Flat spiralspole (4 vindinger, 10 AWG)
 \item F1: 2 A sikring
 \end{itemize}

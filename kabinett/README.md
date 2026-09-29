@@ -10,13 +10,15 @@
 
 \- \*\*Håndtak:\*\* Ergonomisk utformet for å holde batterier (5×9V) og PCB (80×80 mm).
 
-\- \*\*Hode:\*\* Rommer gnistgap og spole. Spolen monteres foran med en avstand på minst 5 cm fra håndtaket for å beskytte brukeren mot magnetfeltet.
+\- \*\*Hode:\*\* Rommer gnistgap og spole. Spolen monteres foran; avstanden til håndtaket bør være tilstrekkelig til at operatørens hender ikke utsettes for høye magnetfelt (feltet avtar med $1/r^3$). En avstand på minst 10 cm anbefales.
 
-\- \*\*Utsparinger:\*\* For brytere (S1, S2, S3), LED, og eventuelt en piezo-knapp (hvis du senere vil legge til trigget gap).
+\- \*\*Utsparinger:\*\* For brytere (S1, S2, S3), LED, og piezo-knapp.
 
-\- \*\*Isolasjon:\*\* Høyspentdeler må være utilgjengelige for berøring. Vurder å legge inn et lag med mylar eller polykarbonat som barriere.
+\- \*\*Isolasjon:\*\* Høyspentdeler må være utilgjengelige for berøring. Bruk barrierer av polykarbonat eller mylar. Sørg for at alle spenningsførende deler er innkapslet.
 
 \- \*\*Ventilasjon:\*\* Sørg for luftespalter for kjøling av MOSFET og utladningsmotstand.
+
+\- \*\*Merking:\*\* Tydelig advarselsmerking om høyspenning og EMP-fare.
 
 
 

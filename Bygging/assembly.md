@@ -12,7 +12,7 @@
 
 \- Utlad alltid kondensatoren før du berører kretsen.
 
-\- Ikke rett spolen mot personer, dyr eller elektronikk du ikke har tenkt å ødelegge.
+\- Ikke rett spolen mot personer, dyr eller elektronikk du ikke har tenkt å påvirke.
 
 
 
@@ -36,7 +36,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \## Transformatorvikling
 
-\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder.
+\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. For å oppnå \~50 µH primærinduktans, må kjernen ha et luftgap. Start med et gap på 0.1 mm (f.eks. et lag tape mellom kjernehalvdelene) og juster etter måling.
 
 \- \*\*Tråd:\*\* 0.5 mm (primær), 0.1 mm (sekundær), 0.2 mm (tilbakekobling).
 
@@ -46,7 +46,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \- Vikle tilbakekobling (5 t) med 0.2 mm tråd over sekundæren, med isolasjon.
 
-\- Monter kjernehalvdelene og lim sammen. Mål induktans: primær \~50 µH, sekundær \~20 mH.
+\- Monter kjernehalvdelene med luftgap og lim sammen. Mål induktans: primær \~50 µH, sekundær \~20 mH (med gap). Juster gapet for å oppnå ønsket verdi.
 
 
 
@@ -56,7 +56,9 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 2\. Monter dem i en holder av plexiglass med messingskruer slik at avstanden kan justeres.
 
-3\. Still inn gapet til ca. 0.5 mm ved hjelp av et blad (følerlære). Dette kan finjusteres under testing for å oppnå gjennomslag ved \~450 V.
+3\. For trigger: bor et 1 mm hull midt mellom elektrodene. Lim inn en tynn, isolert ledning (0.2 mm emaljert) med 0.5 mm klaring til begge hovedelektroder. Denne ledningen er triggerelektroden.
+
+4\. Still inn gapet til ca. 0.5 mm ved hjelp av et blad (følerlære). Dette kan finjusteres under testing.
 
 
 
@@ -74,13 +76,15 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 1\. Plasser PCB, batterier og gnistgap i håndtaket (3D-printet). Håndtaket bør ha utsparinger for brytere og LED.
 
-2\. Koble hovedkondensator C1 mellom utgang (D1 katode) og jord. Bruk korte, tykke ledninger (minst 2.5 mm²) for å minimere induktans.
+2\. Koble piezo-tenneren til trigger-elektroden. Den ene ledningen fra piezo går til triggerelektroden, den andre til jord (eller en av hovedelektrodene).
 
-3\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord.
+3\. Koble hovedkondensator C1 mellom utgang (katode D1b) og jord. Bruk korte, tykke ledninger (minst 2.5 mm²) for å minimere induktans.
 
-4\. Isoler alle høyspentforbindelser med krympestrømpe eller silikon.
+4\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord.
 
-5\. Monter spolen foran på hodet, og fest hodet til håndtaket.
+5\. Isoler alle høyspentforbindelser med krympestrømpe eller silikon.
+
+6\. Monter spolen foran på hodet, og fest hodet til håndtaket.
 
 
 
@@ -94,7 +98,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 4\. Slipp S1. Spenningen skal holde seg. Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
 
-5\. Test selvutløsning: Hold S1 inne og observer at gnistgapet slår gjennom når spenningen når \~450 V. Du skal høre et skarpt smell og se en gnist. Hvis ikke, juster gapet.
+5\. Test trigger: Lad opp til 450 V, trykk på piezo-knappen. Du skal høre et skarpt smell og se en gnist i gapet. Hvis ikke, juster gapet eller sjekk piezo-tilkobling.
 
 
 

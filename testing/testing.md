@@ -46,7 +46,7 @@
 
 3\. Lad og fyr. Du skal se en dempet sinus. Mål frekvens og toppspenning.
 
-4\. Forventet frekvens: 14–15 kHz (avhengig av faktisk L). Forventet toppspenning: \~280 mV (estimert; kan variere).
+4\. Forventet frekvens: 14–15 kHz (avhengig av faktisk L). Forventet toppspenning: \~280 mV (estimert fra forenklet modell; faktisk verdi avhenger av geometri, L, R, og oscilloskopinnstillinger).
 
 
 
@@ -75,6 +75,4 @@
 \- Etter hver test, trykk S2 og verifiser med voltmeter at spenningen er under 10 V før du berører noe.
 
 \- Kontroller at LED-en slukker når spenningen faller, men stol aldri på LED-en alene.
-
-
 

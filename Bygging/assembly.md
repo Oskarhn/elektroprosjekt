@@ -36,7 +36,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \## Transformatorvikling
 
-\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. Bruk et standard luftgap på 0.1 mm (f.eks. et lag Kapton-tape mellom kjernehalvdelene). Dette gir AL ≈ 345 nH/t² og Lp ≈ 34.5 µH med 10 tørn.
+\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. Bruk en kjerne med fabrikkspesifisert luftgap tilsvarende $A\_L \\approx 345\\,\\text{nH/t}^2$, eller lag et gap eksperimentelt med et 0.1 mm lag Kapton-tape. \*\*Mål alltid $L\_p$ etter montering\*\* – ikke anta at tapetykkelsen gir nøyaktig $A\_L = 345\\,\\text{nH/t}^2$.
 
 \- \*\*Tråd:\*\* 0.5 mm (primær), 0.1 mm (sekundær), 0.2 mm (tilbakekobling).
 
@@ -99,6 +99,4 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 4\. Slipp S1. Spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
 
 5\. Test trigger: Lad opp til 450 V, trykk på piezo-knappen. Du skal høre et skarpt smell og se en gnist i gapet. Hvis ikke, juster gapet eller sjekk piezo-tilkobling.
-
-
 

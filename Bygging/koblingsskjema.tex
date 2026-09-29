@@ -21,37 +21,40 @@
 % MOSFET Q1
 \draw (4,0.5) node[nmos, anchor=drain] (Q1) {};
 \draw (Q1.source) to (0,0);
-% Snubber over primær
-\draw (4,2) to[diode, l=D5] (5.5,2) to[resistor, l=R2] (5.5,1) to[capacitor, l=C2] (5.5,0) -- (4,0.5);
+% RCD-snubber: diode anode til drain, katode til R2||C2, andre ende til forsyning
+\draw (4,0.5) to[diode, l=D5] (5.5,0.5);
+\draw (5.5,0.5) -- (5.5,1) to[resistor, l=R2] (5.5,2) -- (4,2);
+\draw (5.5,0.5) -- (6,0.5) to[capacitor, l=C2] (6,2) -- (4,2);
 % Tilbakekoblingsvikling (5 t) med dot
-\draw (4,2) -- (6,2) to[inductor, l=5\,t, name=fb] (6,0.5);
-\node at (6.5,1.25) {$\bullet$};
+\draw (4,2) -- (7,2) to[inductor, l=5\,t, name=fb] (7,0.5);
+\node at (7.5,1.25) {$\bullet$};
 % Kondensator C3 i serie med tilbakekobling
-\draw (6,0.5) to[capacitor, l=C3] (6,-0.5);
+\draw (7,0.5) to[capacitor, l=C3] (7,-0.5);
 % Gate-nettverk
-\draw (6,-0.5) -- (Q1.gate);
+\draw (7,-0.5) -- (Q1.gate);
 \draw (Q1.gate) to[resistor, l=R3] (Q1.source);
-\draw (Q1.gate) to[diode, l=D4] ++(0,-1) to[Zener diode, l=D2] (Q1.source);
-% Startmotstand (endret til 100k)
+% Gate-clamp: zener D2 (katode til gate), diode D4 (katode til gate, anode til zener anode)
+\draw (Q1.gate) to[Zener diode, l=D2] ++(0,-1.5) to[diode, l=D4] (Q1.source);
+% Startmotstand
 \draw (4,2) to[resistor, l=R\_start] (Q1.gate);
 % Sekundærvikling (200 t) med dot (motsatt polaritet)
-\draw (0,0) to[inductor, l=200\,t, name=sec] (8,3);
-\node at (4,3.5) {$\bullet$};
+\draw (0,0) to[inductor, l=200\,t, name=sec] (10,3);
+\node at (5,3.5) {$\bullet$};
 % Likeretterdioder (to i serie)
-\draw (8,3) to[diode, l=D1a] (8,2) to[diode, l=D1b] (8,1);
+\draw (10,3) to[diode, l=D1a] (10,2) to[diode, l=D1b] (10,1);
 % Hovedkondensator C1 (500 V)
-\draw (8,1) to[capacitor, l=C1] (8,0) -- (0,0);
+\draw (10,1) to[capacitor, l=C1] (10,0) -- (0,0);
 % Bleeder-motstand
-\draw (8,1) -- (10,1) to[resistor, l=R\_bleed] (10,0) -- (0,0);
+\draw (10,1) -- (12,1) to[resistor, l=R\_bleed] (12,0) -- (0,0);
 % Utladningskrets
-\draw (8,1) -- (11,1) to[switch, l=S2] (11,0) to[resistor, l=R11] (11,-1) -- (0,-1) -- (0,0);
+\draw (10,1) -- (13,1) to[switch, l=S2] (13,0) to[resistor, l=R11] (13,-1) -- (0,-1) -- (0,0);
 % LED-indikator
-\draw (8,1) -- (9,1) to[resistor, l=110\,k$\Omega$] (9,0) to[resistor, l=110\,k$\Omega$] (9,-1) to[led, l=D3] (9,-2) -- (0,-2) -- (0,-1);
+\draw (10,1) -- (11,1) to[resistor, l=110\,k$\Omega$] (11,0) to[resistor, l=110\,k$\Omega$] (11,-1) to[led, l=D3] (11,-2) -- (0,-2) -- (0,-1);
 % Gnistgap og spole (serie)
-\draw (8,1) -- (8,2) to[sparkgap, l=G1] (8,3);
-\draw (8,3) -- (10,3) to[inductor, l=L1] (10,1) -- (8,1);
+\draw (10,1) -- (10,2) to[sparkgap, l=G1] (10,3);
+\draw (10,3) -- (12,3) to[inductor, l=L1] (12,1) -- (10,1);
 % Piezo-trigger (isolert)
-\draw (8,2.5) -- (7,2.5) node[left] {Piezo};
+\draw (10,2.5) -- (9,2.5) node[left] {Piezo};
 % Jord
 \draw (0,0) node[ground] {};
 \end{circuitikz}
@@ -76,7 +79,7 @@
 \item R\_bleed: 1 M$\Omega$ / 1 W (bleeder)
 \item C1: 100 µF / 500 V (puls-egnet)
 \item C2: 10 nF / 500 V (snubber)
-\item C3: 100 nF / 50 V (DC-blokkering gate)
+\item C3: 100 nF / 100 V (DC-blokkering gate)
 \item T1: Ferritttransformator (E20/10/6, N27, 0.1 mm luftgap, 10:200:5)
 \item G1: Trigget gnistgap (wolfram, ~0,5 mm, triggerelektrode)
 \item L1: Flat spiralspole (4 vindinger, 10 AWG)

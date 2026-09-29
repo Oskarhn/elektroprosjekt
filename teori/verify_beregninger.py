@@ -9,7 +9,7 @@ import math
 C = 100e-6          # F
 V0 = 450.0          # V
 N = 4               # vindinger
-# Spolegeometri: diametre til senter av innerste/ytterste vinding
+# Spolegeometri: senterdiametre innerste/ytterste vinding
 d_i = 20e-3         # m
 d_o = 100e-3        # m
 r_i = d_i / 2       # 10 mm
@@ -62,9 +62,9 @@ print(f"Periode: {T_d*1e6:.1f} µs")
 print(f"Envelope tidskonstant: {tau*1e6:.1f} µs")
 
 # Magnetfelt i sentrum (sum over vindinger)
-# Jevnt fordelte radier (senter av hver vinding)
-radii = [r_i + (r_o - r_i) * (k - 0.5) / N for k in range(1, N+1)]
-print(f"Vindingsradier (mm): {[r*1e3 for r in radii]}")
+# Endepunkt-inklusiv fordeling: 10, 23.33, 36.67, 50 mm
+radii = [r_i + (r_o - r_i) * k / (N - 1) for k in range(N)]
+print(f"Vindingsradier (mm): {[round(r*1e3,2) for r in radii]}")
 B0 = sum([(4e-7 * math.pi * I_peak) / (2 * r) for r in radii])
 print(f"Estimert B(0): {B0:.3f} T")
 
@@ -100,10 +100,15 @@ print(f"Initial effekt i R11: {P_initial:.1f} W")
 R_bleed = 1e6
 P_bleed = V0**2 / R_bleed
 print(f"Bleeder effekt: {P_bleed:.3f} W")
+# Bleeder discharge times
+print("Bleeder discharge times:")
+print(f"  to 50 V: {100 * math.log(450/50):.0f} s")
+print(f"  to 10 V: {100 * math.log(450/10):.0f} s")
 
-# LED-gren
+# LED-gren (med LED-spenningsfall ~2V)
+V_LED = 2.0
 R_led = 220e3
-I_led = V0 / R_led
+I_led = (V0 - V_LED) / R_led
 P_led_total = V0 * I_led
 print(f"LED-gren strøm: {I_led*1e3:.2f} mA, effekt: {P_led_total:.3f} W")
 

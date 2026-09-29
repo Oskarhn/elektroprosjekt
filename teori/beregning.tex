@@ -67,19 +67,20 @@ Periode: $T_d = 1/f_d \approx 68.5\,\mu\text{s}$. Envelope-tidskonstant: $\tau =
 \section{Magnetfelt}
 Vindingenes senterradier: $r_k = 10, 23.33, 36.67, 50\,\text{mm}$.
 \begin{equation}
-B(0) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{1}{r_k} = \frac{4\pi\times10^{-7} \cdot 2580}{2} \left( \frac{1}{0.01} + \frac{1}{0.02333} + \frac{1}{0.03667} + \frac{1}{0.05} \right) \approx 0.31\,\text{T}.
+B(0) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{1}{r_k} = \frac{4\pi\times10^{-7} \cdot 2580}{2} \left( \frac{1}{0.01} + \frac{1}{0.02333} + \frac{1}{0.03667} + \frac{1}{0.05} \right) \approx 0.308\,\text{T}.
 \end{equation}
 
 \section{Pickup-spenning}
 Pickup-spole: $N_p = 5$, diameter $2\,\text{cm}$ $\rightarrow$ areal $A_p = 3.14\times10^{-4}\,\text{m}^2$, avstand $z = 0.2\,\text{m}$.
-Feltet ved pickup: $B(z) \approx 0.85\,\text{mT}$ (beregnet i script).
+Feltet ved pickup: $B(z) \approx 0.849\,\text{mT}$ (beregnet i script).
 Maksimal $di/dt$: $di/dt(0) = V_0/L = 450 / 0.83\times10^{-6} \approx 5.42\times10^8\,\text{A/s}$.
 \begin{equation}
 \frac{dB}{dt}(z) = \frac{\mu_0}{2} \sum_{k=1}^{4} \frac{r_k^2}{(r_k^2+z^2)^{3/2}} \cdot \frac{di}{dt} \approx 178\,\text{T/s}.
 \end{equation}
 \begin{equation}
-\mathcal{E}_{\text{max}} = N_p A_p \frac{dB}{dt} \approx 5 \cdot 3.14\times10^{-4} \cdot 178 \approx 0.28\,\text{V} = 280\,\text{mV}.
+\mathcal{E}_{\text{max}} = N_p A_p \frac{dB}{dt} \approx 5 \cdot 3.14\times10^{-4} \cdot 178 \approx 0.279\,\text{V} = 279\,\text{mV}.
 \end{equation}
+
 Faktisk verdi avhenger av nøyaktig geometri og måles.
 
 \section{Komponentpåkjenninger}

@@ -66,7 +66,7 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til 
 
 \- \*\*Jord for ladekrets:\*\* Alle jordforbindelser for lade- og kontrollkretsen (batteri minus, source Q1, sekundærvikling retur, C1 minus, utladningskrets, LED) samles i ett stjernepunkt nær batteriets minuspol. Unngå sløyfer.
 
-\- \*\*Pulsstrøm:\*\* \*\*Den høye pulsstrømmen (C1 → G1 → L1 → C1) må ikke gå gjennom PCB-spor.\*\* Disse forbindelsene skal være eksterne, tykke ledninger direkte mellom komponentene.
+\- \*\*Pulsstrøm:\*\* \*\*Den høye pulsstrømmen (C1 → G1 → L1 → C1) må ikke gå gjennom PCB-spor.\*\* Disse forbindelsene skal være eksterne, tykke ledninger direkte mellom komponentene. C1- er referansepunktet; ladekretsen kan koble seg til C1- i ett punkt, men pulsstrømmen må gå direkte fra L1 til C1- utenom PCB.
 
 
 
@@ -97,6 +97,4 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til 
 \- Bestill fra f.eks. JLCPCB eller et annet prototyping-firma.
 
 \- Alternativt kan du bruke et stripboard (veroboard) og lodde komponentene for hånd, men da må du være ekstra nøye med isolasjonsavstander.
-
-
 

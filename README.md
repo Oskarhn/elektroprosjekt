@@ -5,7 +5,7 @@
 ## Egenskaper (teoretiske, avhengig av målte verdier)
 - **Energi per puls:** 10 J (ved 450 V ladespenning)
 - **Toppstrøm:** ~2600 A (estimert med antatt motstand 0,1 Ω; må måles)
-- **Magnetfelt i spole sentrum:** ~0,3 T (estimert)
+- **Magnetfelt i spole sentrum:** ~0,31 T (estimert)
 - **Dempet svingeperiode:** ~68,5 µs
 - **Ladetid:** 5–10 s (forventet med alkaliske 9V-batterier)
 - **Strømforsyning:** 5 stk. 9V-batterier i serie (45 V)

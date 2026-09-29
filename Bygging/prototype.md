@@ -5,7 +5,7 @@ Før du bygger hele kretsen, test flyback-omformeren på et breadboard med en la
 
 ### Oppsett
 - Bruk en 12 V strømforsyning i stedet for 45 V batteri.
-- Koble opp flyback-kretsen (Q1, T1, D1a/D1b, D2, D4, R_start=100k, R3=10k, C3=100nF, snubber) på breadboard.
+- Koble opp flyback-kretsen (Q1, T1, D1a/D1b, D2, D4, R_start=100k, R3=10k, C3=100nF/100V, snubber) på breadboard.
 - Koble en 10 µF kondensator på utgangen.
 - Mål utgangsspenningen med multimeter.
 

@@ -10,7 +10,7 @@
 
 | C2 | Keramisk kondensator | 10 nF, 500 V | Radial | 1 | Snubber | TBD |
 
-| C3 | Keramisk kondensator | 100 nF, 50 V | Radial | 1 | DC-blokkering gate | TBD |
+| C3 | Keramisk kondensator | 100 nF, 100 V | Radial | 1 | DC-blokkering gate | TBD |
 
 | Q1 | MOSFET | IRFP450 | TO-247 | 1 | Flyback-svitsj | TBD |
 
@@ -55,6 +55,4 @@
 
 
 \*\*Merk:\*\* Alle delenumre er TBD inntil verifisert mot gjeldende kataloger.
-
-
 

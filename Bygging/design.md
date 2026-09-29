@@ -68,9 +68,9 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \## Beskyttelseskretser
 
-\- \*\*Gatebeskyttelse:\*\* En 15 V zenerdiode (D2) og en 1N4148 (D4) i serie klemmer gate-spenningen til maksimalt \~15,7 V og hindrer negativ spenning.
+\- \*\*Gatebeskyttelse:\*\* En 15 V zenerdiode (D2) med katode til gate, og en 1N4148 (D4) med katode til gate og anode til zenerens anode. Positiv VGS klemmer ved \~15.7 V (zener-revers + diode-forover). Negativ VGS klemmer ved \~ –1.4 V (diode-forover + zener-forover). Dette holder VGS innenfor ±20 V.
 
-\- \*\*Snubber over primærvikling:\*\* En RCD-snubber (D5, R2, C2) demper spenningstransienter når MOSFET-en slår seg av. Verdiene er veiledende og må valideres med måling av drain-spenning.
+\- \*\*Snubber over primærvikling:\*\* En konvensjonell RCD-flyback-clamp (D5, R2, C2) demper drain-spenningstransienter når MOSFET-en slår seg av. Verdiene er veiledende og må valideres med måling av drain-spenning.
 
 
 
@@ -83,6 +83,4 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 \- \*\*LED-indikator:\*\* En grønn LED med to 110 kΩ motstander i serie lyser når kondensatoren er ladet. Lysstyrken varierer med spenningen. \*\*LED-en er ikke en pålitelig indikator for utladet tilstand.\*\*
 
 \- \*\*Sikring:\*\* En 2 A sikring i batterikretsen beskytter mot kortslutning.
-
-
 

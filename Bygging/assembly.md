@@ -36,7 +36,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \## Transformatorvikling
 
-\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. For å oppnå \~50 µH primærinduktans, må kjernen ha et luftgap. Start med et gap på 0.1 mm (f.eks. et lag tape mellom kjernehalvdelene) og juster etter måling.
+\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. Bruk et standard luftgap på 0.1 mm (f.eks. et lag Kapton-tape mellom kjernehalvdelene). Dette gir AL ≈ 345 nH/t² og Lp ≈ 34.5 µH med 10 tørn.
 
 \- \*\*Tråd:\*\* 0.5 mm (primær), 0.1 mm (sekundær), 0.2 mm (tilbakekobling).
 
@@ -46,7 +46,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \- Vikle tilbakekobling (5 t) med 0.2 mm tråd over sekundæren, med isolasjon.
 
-\- Monter kjernehalvdelene med luftgap og lim sammen. Mål induktans: primær \~50 µH, sekundær \~20 mH (med gap). Juster gapet for å oppnå ønsket verdi.
+\- Monter kjernehalvdelene med luftgap og lim sammen. Mål induktans: primær \~34.5 µH, sekundær \~13.8 mH. Juster gapet kun hvis nødvendig.
 
 
 
@@ -80,7 +80,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 3\. Koble hovedkondensator C1 mellom utgang (katode D1b) og jord. Bruk korte, tykke ledninger (minst 2.5 mm²) for å minimere induktans.
 
-4\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord.
+4\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord. \*\*Disse forbindelsene må være korte og tykke – de fører pulsstrømmen.\*\*
 
 5\. Isoler alle høyspentforbindelser med krympestrømpe eller silikon.
 
@@ -92,7 +92,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 1\. Sjekk alle loddinger og tilkoblinger visuelt.
 
-2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Forventet verdi: LED-gren (220 kΩ) parallelt med bleeder (1 MΩ) gir ca. 180 kΩ. Sjekk at det ikke er kortslutning (0 Ω).
+2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Det skal ikke være kortslutning (0 Ω). Forventet motstand avhenger av målemetode; sjekk at bleeder (1 MΩ) og LED-gren (220 kΩ) er tilkoblet, men ikke forvent en eksakt verdi.
 
 3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V i løpet av 5–10 sekunder. LED skal lyse.
 

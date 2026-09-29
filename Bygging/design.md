@@ -10,7 +10,7 @@ Vi har valgt en kondensatorbank (én stor kondensator) med et trigget gnistgap. 
 
 \- \*\*Høy strøm:\*\* En 100 µF kondensator gir \~2600 A ved 450 V, noe som gir et kraftig magnetfelt.
 
-\- \*\*Repeterbarhet:\*\* Ladekretsen lader kondensatoren på noen sekunder; repetisjonsrate bestemmes av ladeeffekten.
+\- \*\*Repeterbarhet:\*\* Ladekretsen lader kondensatoren på noen sekunder; skuddtakten bestemmes av ladetiden.
 
 \- \*\*Håndholdbarhet:\*\* Komponentene er kompakte og lette.
 
@@ -18,13 +18,13 @@ Vi har valgt en kondensatorbank (én stor kondensator) med et trigget gnistgap. 
 
 \## Valg av ladekrets
 
-En selvoscillerende flyback-omformer er valgt fordi den:
+En selvoscillerende flyback-omformer (blocking-oscillator) er valgt fordi den:
 
 \- Er enkel og krever ingen mikrokontroller.
 
 \- Kan lade kondensatoren fra et lavspent batteri (45 V) til 450 V.
 
-\- Bruker få komponenter (MOSFET, transformator, diode, zener, motstander, snubber).
+\- Bruker få komponenter (MOSFET, transformator, diode, zener, motstander, kondensator, snubber).
 
 
 
@@ -54,11 +54,11 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \## Komponentvalg
 
-\- \*\*Kondensator:\*\* 100 µF, 450 V. Må ha lav ESR og tåle høye pulsstrømmer. Fotoflash-type anbefales, men egnethet må verifiseres.
+\- \*\*Kondensator:\*\* 100 µF, 500 V. Må ha lav ESR og tåle høye pulsstrømmer. Fotoflash-type anbefales, men egnethet må verifiseres.
 
 \- \*\*MOSFET:\*\* IRFP450 (500 V, 14 A) er en robust MOSFET. Drain-transient må måles for å bekrefte margin.
 
-\- \*\*Diode D1:\*\* To UF4007 i serie med spenningsdelingsmotstander for å oppnå nødvendig sperrespenning (>1350 V).
+\- \*\*Diode D1:\*\* To UF4007 i serie for å oppnå nødvendig sperrespenning (>1350 V). Transientdeling må verifiseres.
 
 \- \*\*Gnistgap:\*\* Wolframelektroder fra TIG-sveising er ideelle på grunn av høy smeltetemperatur og god erosjonsmotstand.
 

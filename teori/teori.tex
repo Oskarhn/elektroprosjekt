@@ -22,10 +22,6 @@ Energien som er lagret i en kondensator med kapasitans $C$ og spenning $V$ er gi
 \begin{equation}
 E = \frac{1}{2} C V^2.
 \end{equation}
-For $C = 100\,\mu\text{F}$ og $V = 450\,\text{V}$ får vi
-\begin{equation}
-E = 0.5 \cdot 100 \times 10^{-6} \cdot (450)^2 = 10.125\,\text{J} \approx 10\,\text{J}.
-\end{equation}
 
 \subsection{Utladning gjennom spole}
 Når kondensatoren kobles over en spole med induktans $L$ og ohmsk motstand $R$, dannes en serie RLC-krets. Strømmen $i(t)$ er gitt av differensialligningen
@@ -42,10 +38,6 @@ der
 \omega_0 &= \frac{1}{\sqrt{LC}}, \\
 \omega_d &= \sqrt{\omega_0^2 - \alpha^2}.
 \end{align}
-Toppstrømmen inntreffer ved $t_p$ der $di/dt = 0$, og er
-\begin{equation}
-I_{\text{peak}} = \frac{V_0}{\omega_d L} e^{-\alpha t_p} \sin(\omega_d t_p).
-\end{equation}
 
 \subsection{Magnetfelt fra en flat spiralspole}
 For en flat, sirkulær spole med $N$ vindinger med radier $r_k$, er magnetfeltet i sentrum ($z=0$) gitt ved summen av bidrag fra hver vinding:
@@ -56,31 +48,29 @@ For et punkt på aksen i avstand $z$:
 \begin{equation}
 B(z) = \sum_{k=1}^{N} \frac{\mu_0 I r_k^2}{2 (r_k^2 + z^2)^{3/2}}.
 \end{equation}
-Dette er en tilnærming som neglisjerer trådtykkelse og vindingenes spiralform.
 
-\subsection{Indusert spenning i en offerkrets}
+\subsection{Indusert spenning}
 En liten lukket sløyfe med areal $A$ som gjennomtrenges av et tidsvarierende magnetfelt $B(t)$, får indusert en elektromotorisk spenning (ems) gitt av Faradays lov:
 \begin{equation}
 \mathcal{E} = -\frac{d\Phi}{dt} = -A \frac{dB}{dt}.
 \end{equation}
-For en pickup-spole med $N_p$ vindinger blir det $N_p$ ganger dette.
 
 \section{Kretsens virkemåte}
 
 \subsection{Overordnet blokkskjema}
 Enheten består av tre hoveddeler:
 \begin{enumerate}
-\item \textbf{Ladekrets:} En flyback-omformer som omdanner 45 V DC fra batteriene til 450 V DC for å lade hovedkondensatoren.
+\item \textbf{Ladekrets:} En selvoscillerende flyback-omformer som omdanner 45 V DC fra batteriene til 450 V DC for å lade hovedkondensatoren.
 \item \textbf{Energilager og utladningskrets:} En 100 µF kondensator og et trigget gnistgap som kobler kondensatoren til spolen når piezo-tenneren aktiveres.
 \item \textbf{Antennespole:} En flat spiralspole som omdanner strømpulsen til et magnetfelt.
 \end{enumerate}
 
 \subsection{Ladekrets (flyback-omformer)}
-Flyback-omformeren er en selvoscillerende krets basert på en MOSFET, en ferritttransformator og en diode. Når batterispenningen påtrykkes, begynner MOSFET-en å lede på grunn av lekkasjestrøm. Strømmen gjennom primærviklingen induserer en spenning i tilbakekoblingsviklingen som driver gaten positivt, og MOSFET-en åpner helt. Strømmen i primærviklingen øker lineært, og energi lagres i transformatorens magnetfelt. Når kjernen begynner å mettes, kollapser tilbakekoblingen, MOSFET-en slår seg av, og den lagrede energien overføres til sekundærviklingen. Utgangsspenningen likerettes av en rask diode og lader hovedkondensatoren. En RCD-snubber (D5, R2, C2) over primærviklingen absorberer spenningstopper fra lekkinduktans og beskytter MOSFET-en.
+Flyback-omformeren er en selvoscillerende krets basert på en MOSFET, en ferritttransformator og en diode. En startmotstand gir en liten gate-spenning som åpner MOSFET-en. Strøm gjennom primærviklingen induserer en spenning i tilbakekoblingsviklingen som via en kondensator (DC-blokkering) driver gaten positivt, og MOSFET-en åpner helt. Når kjernen mettes, faller tilbakekoblingsspenningen, gate lades ut gjennom en motstand, og MOSFET-en slår seg av. Den lagrede energien overføres til sekundærviklingen og likerettes for å lade hovedkondensatoren. En RCD-snubber demper spenningstopper.
 
 \subsection{Gnistgap og trigger}
-Gnistgapet består av to wolframelektroder med en avstand på ~0,5 mm. En piezoelektrisk tenner genererer en høy spenningspuls (>10 kV) som lager en liten gnist fra en triggerelektrode til en av hovedelektrodene. Dette ioniserer gapet, slik at hovedgnisten kan dannes selv om spenningen er lavere enn den naturlige gjennomslagsspenningen.
+Gnistgapet består av to wolframelektroder med en avstand på ~0,5 mm. En piezoelektrisk tenner genererer en høy spenningspuls (>10 kV) som ioniserer gapet, slik at hovedgnisten kan dannes.
 
 \subsection{Utladningsforløp}
-Når gnistgapet lukkes, kobles den oppladede kondensatoren direkte over spolen. Kretsen er en underdempet RLC-krets med svært lav motstand (dominert av gnistgapets lysbue og ledningsmotstand). Strømmen stiger til over 2000 A i løpet av noen titalls mikrosekunder, og magnetfeltet når sitt maksimum. Deretter svinger energien mellom kondensatoren og spolen, og pulsen dør ut etter noen få perioder på grunn av resistive tap.
+Når gnistgapet lukkes, kobles den oppladede kondensatoren direkte over spolen. Kretsen er en underdempet RLC-krets med svært lav motstand. Strømmen stiger til flere tusen ampere i løpet av mikrosekunder, og magnetfeltet når sitt maksimum. Deretter svinger energien mellom kondensatoren og spolen, og pulsen dør ut etter noen få perioder.
 \end{document}

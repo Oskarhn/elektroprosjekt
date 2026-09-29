@@ -46,7 +46,7 @@
 
 3\. Lad og fyr. Du skal se en dempet sinus. Mål frekvens og toppspenning.
 
-4\. Forventet frekvens: 14–15 kHz (avhengig av faktisk L). Forventet toppspenning: \~40 mV (estimert; kan variere).
+4\. Forventet frekvens: 14–15 kHz (avhengig av faktisk L). Forventet toppspenning: \~260 mV (estimert; kan variere).
 
 
 
@@ -60,13 +60,13 @@
 
 
 
-\## Karakterisering av repetisjonsrate
+\## Karakterisering av ladetid og skuddtakt
 
-1\. Med fulladet batteri, hold S1 inne og tell antall pulser per minutt.
+1\. Med fulladet batteri, mål tiden det tar å lade C1 fra 0 V til 450 V mens S1 holdes inne.
 
-2\. Mål spenningen over C1 rett før hver puls for å se om den når 450 V.
+2\. Gjenta flere ganger og beregn gjennomsnittlig ladetid.
 
-3\. Beregn effektiv repetisjonsrate.
+3\. Maksimal skuddtakt er begrenset av ladetiden pluss tiden for å trykke på piezo-triggeren.
 
 
 

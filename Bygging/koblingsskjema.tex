@@ -26,26 +26,28 @@
 % Tilbakekoblingsvikling (5 t) med dot
 \draw (4,2) -- (6,2) to[inductor, l=5\,t, name=fb] (6,0.5);
 \node at (6.5,1.25) {$\bullet$};
-\draw (6,0.5) to[resistor, l=R1] (Q1.gate);
-% Gatebeskyttelse
+% Kondensator C3 i serie med tilbakekobling
+\draw (6,0.5) to[capacitor, l=C3] (6,-0.5);
+% Gate-nettverk
+\draw (6,-0.5) -- (Q1.gate);
+\draw (Q1.gate) to[resistor, l=R3] (Q1.source);
 \draw (Q1.gate) to[diode, l=D4] ++(0,-1) to[Zener diode, l=D2] (Q1.source);
+% Startmotstand
+\draw (4,2) to[resistor, l=R\_start] (6,2);
 % Sekundærvikling (200 t) med dot (motsatt polaritet)
 \draw (4,2) -- (4,3) to[inductor, l=200\,t, name=sec] (8,3);
 \node at (6,3.5) {$\bullet$};
 % Likeretterdioder (to i serie)
 \draw (8,3) to[diode, l=D1a] (8,2) to[diode, l=D1b] (8,1);
-% Balanseringsmotstander
-\draw (8,3) -- (9,3) to[resistor, l=10\,M$\Omega$] (9,2) -- (8,2);
-\draw (8,2) -- (9,2) to[resistor, l=10\,M$\Omega$] (9,1) -- (8,1);
-% Hovedkondensator C1
+% Hovedkondensator C1 (500 V)
 \draw (8,1) to[capacitor, l=C1] (8,0) -- (0,0);
 % Bleeder-motstand
-\draw (8,1) -- (10,1) to[resistor, l=1\,M$\Omega$] (10,0) -- (0,0);
+\draw (8,1) -- (10,1) to[resistor, l=R\_bleed] (10,0) -- (0,0);
 % Utladningskrets
 \draw (8,1) -- (11,1) to[switch, l=S2] (11,0) to[resistor, l=R11] (11,-1) -- (0,-1) -- (0,0);
 % LED-indikator
 \draw (8,1) -- (9,1) to[resistor, l=110\,k$\Omega$] (9,0) to[resistor, l=110\,k$\Omega$] (9,-1) to[led, l=D3] (9,-2) -- (0,-2) -- (0,-1);
-% Gnistgap og spole
+% Gnistgap og spole (serie)
 \draw (8,1) -- (8,2) to[sparkgap, l=G1] (8,3);
 \draw (8,3) -- (10,3) to[inductor, l=L1] (10,1) -- (8,1);
 % Piezo-trigger (isolert)
@@ -61,19 +63,21 @@
 \item S1: Ladeknapp (momentan, lavspent)
 \item S2: Utladningsknapp (momentan, min. 450 V DC, 0,5 A)
 \item Q1: IRFP450 N-kanal MOSFET
-\item D1a, D1b: UF4007 (to i serie, hver med 10 M$\Omega$ parallelt)
+\item D1a, D1b: UF4007 (to i serie)
 \item D2: 15 V zenerdiode (BZX55C15)
 \item D3: Grønn LED
 \item D4: 1N4148
 \item D5: UF4007 (snubber)
-\item R1: 1 k$\Omega$ / 1 W (gate)
+\item R\_start: 220 k$\Omega$ / 0,25 W (oppstart)
 \item R2: 10 k$\Omega$ / 0,25 W (snubber)
+\item R3: 10 k$\Omega$ / 0,25 W (gate-utladning)
 \item R11: 1 k$\Omega$ / 25 W (utladning, pulsratet)
 \item R12a, R12b: 110 k$\Omega$ / 1 W (LED)
 \item R\_bleed: 1 M$\Omega$ / 1 W (bleeder)
-\item C1: 100 µF / 450 V (puls-egnet)
+\item C1: 100 µF / 500 V (puls-egnet)
 \item C2: 10 nF / 500 V (snubber)
-\item T1: Ferritttransformator (E20/10/6, N27, luftgap, 10:200:5)
+\item C3: 100 nF / 50 V (DC-blokkering gate)
+\item T1: Ferritttransformator (E20/10/6, N27, 0.1 mm luftgap, 10:200:5)
 \item G1: Trigget gnistgap (wolfram, ~0,5 mm, triggerelektrode)
 \item L1: Flat spiralspole (4 vindinger, 10 AWG)
 \item F1: 2 A sikring

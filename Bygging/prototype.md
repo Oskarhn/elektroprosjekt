@@ -5,7 +5,7 @@ Før du bygger hele kretsen, test flyback-omformeren på et breadboard med en la
 
 ### Oppsett
 - Bruk en 12 V strømforsyning i stedet for 45 V batteri.
-- Koble opp flyback-kretsen (Q1, T1, D1a/D1b, D2, D4, R1, snubber) på breadboard.
+- Koble opp flyback-kretsen (Q1, T1, D1a/D1b, D2, D4, R_start, R3, C3, snubber) på breadboard.
 - Koble en 10 µF kondensator på utgangen.
 - Mål utgangsspenningen med multimeter.
 
@@ -14,16 +14,16 @@ Før du bygger hele kretsen, test flyback-omformeren på et breadboard med en la
 - Hvis ingenting skjer: bytt polaritet på tilbakekoblingsviklingen.
 - Hvis MOSFET blir varm: sjekk at zener og diode er riktig koblet, og at snubberen er på plass.
 
-## 2. Test med hovedkondensator (100 µF, 450 V)
+## 2. Test med hovedkondensator (100 µF, 500 V)
 Når flyback-omformeren fungerer, bytt til 45 V batteri og 100 µF kondensator.
 
 ### Oppsett
 - Koble alt på et isolerende underlag (ikke breadboard – bruk stripboard eller direkte lodding).
-- Inkluder utladningskretsen (S2, R11) og LED-indikator (D3, R12a/R12b).
+- Inkluder utladningskretsen (S2, R11), bleeder (1 MΩ) og LED-indikator (D3, R12a/R12b).
 - Koble et voltmeter over C1.
 
 ### Test
-- Hold S1 inne og se at spenningen stiger til 450 V. LED skal lyse ved ~200 V.
+- Hold S1 inne og se at spenningen stiger til 450 V. LED skal lyse.
 - Slipp S1 og trykk S2 for å lade ut. Spenningen skal falle raskt.
 - Gjenta flere ganger for å sikre stabil drift.
 

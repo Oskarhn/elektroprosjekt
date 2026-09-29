@@ -10,7 +10,7 @@
 
 \- \*\*Sporbredde for høye strømmer:\*\* Minst 2 mm for primærkretsen (batteri, MOSFET, transformator).
 
-\- \*\*Jordplan:\*\* Solid jordplan på bunnsiden, med utsparinger under høyspentkomponenter.
+\- \*\*Jordplan:\*\* Solid jordplan på bunnsiden for ladekretsen, med utsparinger under høyspentkomponenter.
 
 
 
@@ -24,7 +24,7 @@
 
 &#x20;  - T1: Ferrittkjerne limes til kortet. Primær- og sekundærviklinger loddes direkte til pads.
 
-&#x20;  - D1a/D1b: Stående montering nær transformatorens sekundær, med spenningsdelingsmotstander.
+&#x20;  - D1a/D1b: Stående montering nær transformatorens sekundær.
 
 3\. \*\*Høyspentutgang:\*\* Katoden til D1b går til en stor, isolert pad (minst 3 mm bredde) som går til en skrueterminal for tilkobling av ekstern hovedkondensator C1. Denne terminalen bør være i øvre høyre hjørne.
 
@@ -36,7 +36,7 @@
 
 &#x20;  - TP2: Utgangsspenning (katode D1b) for voltmetertilkobling.
 
-&#x20;  - TP3: Jord (stjernejordpunkt).
+&#x20;  - TP3: Jord (stjernejordpunkt for ladekretsen).
 
 &#x20;  - TP4: Valgfri spenningsdeler for sikker høyspentmåling (se under).
 
@@ -64,9 +64,9 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til 
 
 \- \*\*Primærkrets:\*\* Sporene mellom batteri, S1, primærvikling og MOSFET må være korte og tykke (≥2 mm) for å minimere induktans og resistive tap.
 
-\- \*\*Jord:\*\* Alle jordforbindelser (batteri minus, source Q1, sekundærvikling, C1 minus, utladningskrets, LED) skal samles i ett stjernepunkt nær batteriets minuspol. Unngå sløyfer.
+\- \*\*Jord for ladekrets:\*\* Alle jordforbindelser for lade- og kontrollkretsen (batteri minus, source Q1, sekundærvikling retur, C1 minus, utladningskrets, LED) samles i ett stjernepunkt nær batteriets minuspol. Unngå sløyfer.
 
-\- \*\*Gate-driver:\*\* Sporet fra tilbakekoblingsvikling via R1 til gate bør være kort og holdes unna høyspentdeler.
+\- \*\*Pulsstrøm:\*\* \*\*Den høye pulsstrømmen (C1 → G1 → L1 → C1) må ikke gå gjennom PCB-spor.\*\* Disse forbindelsene skal være eksterne, tykke ledninger direkte mellom komponentene.
 
 
 
@@ -84,9 +84,9 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til 
 
 \- \*\*Gnistgap G1:\*\* Monteres på et separat brett nær spolen. Koble den ene siden til C1 pluss (via tykk ledning) og den andre til spolen.
 
-\- \*\*Spole L1:\*\* Loddes direkte til gnistgapets utgangselektrode og jord (C1 minus).
+\- \*\*Spole L1:\*\* Loddes direkte til gnistgapets utgangselektrode og jord (C1 minus) med tykke ledninger.
 
-\- \*\*Piezo-trigger:\*\* To ledninger trekkes fra piezo-elementet i håndtaket til triggerelektroden i gnistgapet. Den ene ledningen kan kobles til jord, men vær oppmerksom på at høyspentpulsen fra piezo kan forplante seg tilbake til kretsen. Vurder å isolere triggeren elektrisk fra resten av kretsen.
+\- \*\*Piezo-trigger:\*\* To ledninger trekkes fra piezo-elementet i håndtaket til triggerelektroden i gnistgapet. Hold triggerkretsen isolert fra PCB-jord for å unngå støy.
 
 
 

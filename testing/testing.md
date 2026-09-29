@@ -22,7 +22,7 @@
 
 3\. Slå på S3, hold S1. Spenningen skal stige til 450 V i løpet av 5–10 sek. LED skal lyse.
 
-4\. Slipp S1; spenningen skal holde seg. Trykk S2 og hold i minst 5 sekunder; spenningen skal falle til under 10 V.
+4\. Slipp S1; spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 og hold i minst 5 sekunder; spenningen skal falle til under 10 V.
 
 
 
@@ -46,7 +46,7 @@
 
 3\. Lad og fyr. Du skal se en dempet sinus. Mål frekvens og toppspenning.
 
-4\. Forventet frekvens: 14–15 kHz (avhengig av faktisk L). Forventet toppspenning: \~260 mV (estimert; kan variere).
+4\. Forventet frekvens: 14–15 kHz (avhengig av faktisk L). Forventet toppspenning: \~280 mV (estimert; kan variere).
 
 
 

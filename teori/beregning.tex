@@ -16,7 +16,7 @@
 \subsection{Spesifikasjoner}
 \begin{itemize}
 \item Kondensator: $C = 100\,\mu\text{F}$, merkespenning $500\,\text{V}$ (lades til $V_0 = 450\,\text{V}$)
-\item Spole: Flat spiral, $N = 4$ vindinger, indre diameter $20\,\text{mm}$, ytre diameter $100\,\text{mm}$, tråd: $10\,\text{AWG}$ ($2.588\,\text{mm}$ diameter)
+\item Spole: Flat spiral, $N = 4$ vindinger, indre diameter $20\,\text{mm}$, ytre diameter $100\,\text{mm}$ (målt til senter av vindinger), tråd: $10\,\text{AWG}$ ($2.588\,\text{mm}$ diameter)
 \end{itemize}
 
 \subsection{Induktans (Wheelers formel)}
@@ -65,20 +65,20 @@ I_{\text{peak}} = \frac{V_0}{\omega_d L} e^{-\alpha t_p} \sin(\omega_d t_p) \app
 Periode: $T_d = 1/f_d \approx 68.5\,\mu\text{s}$. Envelope-tidskonstant: $\tau = 1/\alpha \approx 16.6\,\mu\text{s}$.
 
 \section{Magnetfelt}
-Vindingenes senterradier: $r_k = 15, 25, 35, 45\,\text{mm}$.
+Vindingenes senterradier: $r_k = 10, 23.33, 36.67, 50\,\text{mm}$.
 \begin{equation}
-B(0) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{1}{r_k} = \frac{4\pi\times10^{-7} \cdot 2580}{2} \left( \frac{1}{0.015} + \frac{1}{0.025} + \frac{1}{0.035} + \frac{1}{0.045} \right) \approx 0.31\,\text{T}.
+B(0) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{1}{r_k} = \frac{4\pi\times10^{-7} \cdot 2580}{2} \left( \frac{1}{0.01} + \frac{1}{0.02333} + \frac{1}{0.03667} + \frac{1}{0.05} \right) \approx 0.31\,\text{T}.
 \end{equation}
 
 \section{Pickup-spenning}
 Pickup-spole: $N_p = 5$, diameter $2\,\text{cm}$ $\rightarrow$ areal $A_p = 3.14\times10^{-4}\,\text{m}^2$, avstand $z = 0.2\,\text{m}$.
-Feltet ved pickup: $B(z) \approx 0.86\,\text{mT}$ (beregnet i script).
+Feltet ved pickup: $B(z) \approx 0.85\,\text{mT}$ (beregnet i script).
 Maksimal $di/dt$: $di/dt(0) = V_0/L = 450 / 0.83\times10^{-6} \approx 5.42\times10^8\,\text{A/s}$.
 \begin{equation}
-\frac{dB}{dt}(z) = \frac{\mu_0}{2} \sum_{k=1}^{4} \frac{r_k^2}{(r_k^2+z^2)^{3/2}} \cdot \frac{di}{dt}.
+\frac{dB}{dt}(z) = \frac{\mu_0}{2} \sum_{k=1}^{4} \frac{r_k^2}{(r_k^2+z^2)^{3/2}} \cdot \frac{di}{dt} \approx 178\,\text{T/s}.
 \end{equation}
 \begin{equation}
-\mathcal{E}_{\text{max}} = N_p A_p \frac{dB}{dt} \approx 5 \cdot 3.14\times10^{-4} \cdot 1.64\times10^5 \approx 0.258\,\text{V} = 258\,\text{mV}.
+\mathcal{E}_{\text{max}} = N_p A_p \frac{dB}{dt} \approx 5 \cdot 3.14\times10^{-4} \cdot 178 \approx 0.28\,\text{V} = 280\,\text{mV}.
 \end{equation}
 Faktisk verdi avhenger av nøyaktig geometri og måles.
 
@@ -104,8 +104,13 @@ L_p &= 345 \times 10^{-9} \cdot 10^2 = 34.5\,\mu\text{H}, \\
 L_s &= 34.5\,\mu\text{H} \cdot (200/10)^2 = 13.8\,\text{mH}.
 \end{align}
 
+\section{Kontinuerlig last}
+LED-gren: $220\,\text{k}\Omega$, strøm $2.05\,\text{mA}$, effekt $0.92\,\text{W}$.
+Bleeder: $1\,\text{M}\Omega$, strøm $0.45\,\text{mA}$, effekt $0.20\,\text{W}$.
+Total kontinuerlig last ved $450\,\text{V}$: $1.12\,\text{W}$.
+
 \section{Repetisjonsrate}
-Ladetid avhenger av ladestrøm, som må måles. Med antatt gjennomsnittlig ladestrøm $30\,\text{mA}$: $t = C V / I = 0.045 / 0.03 = 1.5\,\text{s}$ (hypotetisk). Faktisk ladetid forventes $5$--$10\,\text{s}$ basert på erfaring med 9V-batterier.
+Ladetid avhenger av ladestrøm og kontinuerlig last. Med antatt gjennomsnittlig ladestrøm $30\,\text{mA}$ (hypotetisk): $t = C V / I = 0.045 / 0.03 = 1.5\,\text{s}$ (ikke realistisk). Faktisk ladetid forventes $5$--$10\,\text{s}$ basert på batterikapasitet og last.
 
 \section{Konklusjon}
 Alle tall er teoretiske. Fysiske målinger er nødvendige for validering.

@@ -9,8 +9,11 @@ import math
 C = 100e-6          # F
 V0 = 450.0          # V
 N = 4               # vindinger
-r_i = 10e-3         # m (indre radius)
-r_o = 50e-3         # m (ytre radius)
+# Spolegeometri: diametre til senter av innerste/ytterste vinding
+d_i = 20e-3         # m
+d_o = 100e-3        # m
+r_i = d_i / 2       # 10 mm
+r_o = d_o / 2       # 50 mm
 r_avg = (r_i + r_o) / 2
 w = r_o - r_i
 
@@ -97,6 +100,16 @@ print(f"Initial effekt i R11: {P_initial:.1f} W")
 R_bleed = 1e6
 P_bleed = V0**2 / R_bleed
 print(f"Bleeder effekt: {P_bleed:.3f} W")
+
+# LED-gren
+R_led = 220e3
+I_led = V0 / R_led
+P_led_total = V0 * I_led
+print(f"LED-gren strøm: {I_led*1e3:.2f} mA, effekt: {P_led_total:.3f} W")
+
+# Total kontinuerlig last
+P_cont = P_bleed + P_led_total
+print(f"Total kontinuerlig last ved 450V: {P_cont:.3f} W")
 
 # Transformator (E20/10/6, 0.1 mm gap)
 AL = 345e-9  # H/t^2

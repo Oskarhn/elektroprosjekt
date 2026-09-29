@@ -64,7 +64,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \## Spole
 
-1\. 3D-print en sirkulær form med spiralrille (20 mm indre, 100 mm ytre, 2.5 mm dybde).
+1\. 3D-print en sirkulær form med spiralrille. Sporet skal ha senterdiametre: innerste vinding 20 mm, ytterste vinding 100 mm, med 4 jevnt fordelte vindinger. Rilledybde 2.5 mm.
 
 2\. Vikle 4 tørn 10 AWG tråd i rillen, lim med superlim underveis.
 
@@ -76,11 +76,11 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 1\. Plasser PCB, batterier og gnistgap i håndtaket (3D-printet). Håndtaket bør ha utsparinger for brytere og LED.
 
-2\. Koble piezo-tenneren til trigger-elektroden. Den ene ledningen fra piezo går til triggerelektroden, den andre til jord (eller en av hovedelektrodene). Vær oppmerksom på at høyspentpulsen fra piezo kan forplante seg; vurder å isolere triggeren elektrisk.
+2\. Koble piezo-tenneren til trigger-elektroden. Den ene ledningen fra piezo går til triggerelektroden, den andre til gnistgapets jordside (ikke PCB-jord). Hold triggerkretsen isolert fra resten av elektronikken.
 
 3\. Koble hovedkondensator C1 mellom utgang (katode D1b) og jord. Bruk korte, tykke ledninger (minst 2.5 mm²) for å minimere induktans.
 
-4\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord. \*\*Disse forbindelsene må være korte og tykke – de fører pulsstrømmen.\*\*
+4\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord (C1 minus). \*\*Disse forbindelsene må være korte og tykke – de fører pulsstrømmen.\*\*
 
 5\. Isoler alle høyspentforbindelser med krympestrømpe eller silikon.
 
@@ -96,7 +96,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V i løpet av 5–10 sekunder. LED skal lyse.
 
-4\. Slipp S1. Spenningen skal holde seg. Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
+4\. Slipp S1. Spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
 
 5\. Test trigger: Lad opp til 450 V, trykk på piezo-knappen. Du skal høre et skarpt smell og se en gnist i gapet. Hvis ikke, juster gapet eller sjekk piezo-tilkobling.
 

@@ -48,7 +48,7 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \- Har lav induktans (\~0,83 µH), noe som gir høy di/dt og dermed høy indusert spenning.
 
-\- Er enkel å lage med 3D-printet form.
+\- Er enkel å lage med 3D-printet form. Spesifikasjon: senterdiametre 20 mm (innerste) og 100 mm (ytterste), 10 AWG tråd.
 
 
 

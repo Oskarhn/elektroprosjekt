@@ -24,7 +24,7 @@
 
 | D5 | Diode | UF4007 | DO-41 | 1 | Snubber | TBD |
 
-| R\_start | Motstand | 220 kΩ, 0.25 W | AXIAL-0.3 | 1 | Oppstart gate | TBD |
+| R\_start | Motstand | 100 kΩ, 0.25 W | AXIAL-0.3 | 1 | Oppstart gate | TBD |
 
 | R2 | Motstand | 10 kΩ, 0.25 W | AXIAL-0.3 | 1 | Snubber | TBD |
 

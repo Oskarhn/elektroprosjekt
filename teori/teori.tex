@@ -66,7 +66,7 @@ Enheten består av tre hoveddeler:
 \end{enumerate}
 
 \subsection{Ladekrets (flyback-omformer)}
-Flyback-omformeren er en selvoscillerende krets basert på en MOSFET, en ferritttransformator og en diode. En startmotstand gir en liten gate-spenning som åpner MOSFET-en. Strøm gjennom primærviklingen induserer en spenning i tilbakekoblingsviklingen som via en kondensator (DC-blokkering) driver gaten positivt, og MOSFET-en åpner helt. Når kjernen mettes, faller tilbakekoblingsspenningen, gate lades ut gjennom en motstand, og MOSFET-en slår seg av. Den lagrede energien overføres til sekundærviklingen og likerettes for å lade hovedkondensatoren. En RCD-snubber demper spenningstopper.
+Flyback-omformeren er en selvoscillerende krets basert på en MOSFET, en ferritttransformator og en diode. En startmotstand (R\_start) gir en liten gate-spenning som åpner MOSFET-en. Strøm gjennom primærviklingen induserer en spenning i tilbakekoblingsviklingen som via en kondensator (C3, DC-blokkering) driver gaten positivt, og MOSFET-en åpner helt. Når kjernen mettes, faller tilbakekoblingsspenningen, gate lades ut gjennom R3, og MOSFET-en slår seg av. Den lagrede energien overføres til sekundærviklingen og likerettes for å lade hovedkondensatoren. En RCD-snubber demper spenningstopper.
 
 \subsection{Gnistgap og trigger}
 Gnistgapet består av to wolframelektroder med en avstand på ~0,5 mm. En piezoelektrisk tenner genererer en høy spenningspuls (>10 kV) som ioniserer gapet, slik at hovedgnisten kan dannes.

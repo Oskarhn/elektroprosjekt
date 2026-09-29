@@ -1,102 +1,104 @@
-\# PCB-layoutguide for ladekrets
+\# Byggeveiledning for EMP-generator
 
 
 
-\## Spesifikasjoner
+\## Sikkerhetsregler
 
-\- \*\*Størrelse:\*\* 80 × 80 mm, dobbeltsidig FR4, 1.6 mm tykkelse, 35 µm kobber.
+\- Arbeid alltid på et ryddig, isolerende underlag.
 
-\- \*\*Isolasjonsavstand:\*\* Minst 2 mm krypestrøm for spor >100 V, men endelig avstand må velges iht. gjeldende standard (f.eks. IPC-2221) for 450 V arbeidsspenning.
+\- Bruk vernebriller og isolerende hansker ved testing.
 
-\- \*\*Sporbredde for høye strømmer:\*\* Minst 2 mm for primærkretsen (batteri, MOSFET, transformator).
+\- Ha en brannslukker tilgjengelig.
 
-\- \*\*Jordplan:\*\* Solid jordplan på bunnsiden for ladekretsen, med utsparinger under høyspentkomponenter.
+\- Utlad alltid kondensatoren før du berører kretsen.
 
-
-
-\## Komponentplassering
-
-1\. \*\*Strøminngang:\*\* Plasser skrueterminal for batteri (45 V) i nedre venstre hjørne. Rett ved siden av: sikring F1 og hovedbryter S3 (kan også monteres på panelet).
-
-2\. \*\*Flyback-kjerne:\*\* MOSFET Q1, transformator T1, dioder D1a/D1b, zener D2, diode D4, og snubber-komponenter (D5, R2, C2) plasseres i en tett klynge midt på kortet for å minimere sløyfearealet for høyfrekvente strømmer.
-
-&#x20;  - Q1: TO-247, stående med kjøleribbe (valgfritt). Plasser slik at drain, source og gate er lett tilgjengelige.
-
-&#x20;  - T1: Ferrittkjerne limes til kortet. Primær- og sekundærviklinger loddes direkte til pads.
-
-&#x20;  - D1a/D1b: Stående montering nær transformatorens sekundær.
-
-3\. \*\*Høyspentutgang:\*\* Katoden til D1b går til en stor, isolert pad (minst 3 mm bredde) som går til en skrueterminal for tilkobling av ekstern hovedkondensator C1. Denne terminalen bør være i øvre høyre hjørne.
-
-4\. \*\*Kontrollkomponenter:\*\* Ladeknapp S1, utladningsknapp S2, LED D3 og motstander R12a/R12b plasseres langs høyre kant for enkel tilgang gjennom kabinettet.
-
-5\. \*\*Testpunkter:\*\* Legg inn følgende loddeøyer:
-
-&#x20;  - TP1: Gate på Q1 (for oscilloskopmåling av svitsjeforløp).
-
-&#x20;  - TP2: Utgangsspenning (katode D1b) for voltmetertilkobling.
-
-&#x20;  - TP3: Jord (stjernejordpunkt for ladekretsen).
-
-&#x20;  - TP4: Valgfri spenningsdeler for sikker høyspentmåling (se under).
+\- Ikke rett spolen mot personer, dyr eller elektronikk du ikke har tenkt å påvirke.
 
 
 
-\## Spenningsdeler for høyspentmåling (valgfri)
+\## Forberedelser
 
-For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til en spenningsdeler:
-
-\- R13: 10 MΩ, 1 W (høyspentmotstand, f.eks. Vishay VR68)
-
-\- R14: 100 kΩ, 0.25 W
-
-\- Koble R13 mellom HV-utgang (katode D1b) og TP4.
-
-\- Koble R14 mellom TP4 og GND.
-
-\- Spenningen på TP4 er V\_ut / 101. Ved 450 V vil TP4 vise \~4.46 V.
+Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (minst 100 MHz), høyspenningsprobe (100:1), vernebriller, isolerende hansker, varmepistol, superlim, 3D-printer (for kabinett og spoleform).
 
 
 
-\## Sporingsregler
+\## PCB-montering
 
-\- \*\*Høyspentnett:\*\* Alle spor som er koblet til D1b's katode, C1, gnistgap og utladningskrets må ha minst 2 mm klaring til jordplan og andre signaler. Bruk 2.5 mm spor der det er mulig.
+1\. Lodde komponentene på PCB i rekkefølge: motstander, dioder, MOSFET, LED, brytere, transformator.
 
-\- \*\*Primærkrets:\*\* Sporene mellom batteri, S1, primærvikling og MOSFET må være korte og tykke (≥2 mm) for å minimere induktans og resistive tap.
+2\. Vær nøye med polaritet på dioder, LED og elektrolyttkondensator (C1).
 
-\- \*\*Jord for ladekrets:\*\* Alle jordforbindelser for lade- og kontrollkretsen (batteri minus, source Q1, sekundærvikling retur, C1 minus, utladningskrets, LED) samles i ett stjernepunkt nær batteriets minuspol. Unngå sløyfer.
+3\. Transformator T1: lim ferrittkjernen til PCB, lodde viklingene direkte til pads.
 
-\- \*\*Pulsstrøm:\*\* \*\*Den høye pulsstrømmen (C1 → G1 → L1 → C1) må ikke gå gjennom PCB-spor.\*\* Disse forbindelsene skal være eksterne, tykke ledninger direkte mellom komponentene.
-
-
-
-\## Termisk design
-
-\- MOSFET Q1 kan bli varm under kontinuerlig lading. Fest en liten kjøleribbe (f.eks. 20 × 20 mm) med varmeledende lim. Sørg for luftstrøm i kabinettet.
-
-\- Utladningsmotstand R11 (1 kΩ / 25 W) monteres utenfor PCB på en metallplate eller kjøleprofil, da den kan bli varm under utladning.
+4\. Koble batteriklemmer og eksterne komponenter via skrueterminaler.
 
 
 
-\## Tilkoblinger til eksterne komponenter
+\## Transformatorvikling
 
-\- \*\*Hovedkondensator C1:\*\* Bruk en snap-in kondensator og koble den med korte, tykke ledninger (minst 2.5 mm²) direkte til skrueterminalene på PCB.
+\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. Bruk et standard luftgap på 0.1 mm (f.eks. et lag Kapton-tape mellom kjernehalvdelene). Dette gir AL ≈ 345 nH/t² og Lp ≈ 34.5 µH med 10 tørn.
 
-\- \*\*Gnistgap G1:\*\* Monteres på et separat brett nær spolen. Koble den ene siden til C1 pluss (via tykk ledning) og den andre til spolen.
+\- \*\*Tråd:\*\* 0.5 mm (primær), 0.1 mm (sekundær), 0.2 mm (tilbakekobling).
 
-\- \*\*Spole L1:\*\* Loddes direkte til gnistgapets utgangselektrode og jord (C1 minus) med tykke ledninger.
+\- Vikle primær (10 t) med 0.5 mm tråd jevnt fordelt over spoleholderen. Legg isolasjonstape.
 
-\- \*\*Piezo-trigger:\*\* To ledninger trekkes fra piezo-elementet i håndtaket til triggerelektroden i gnistgapet. Hold triggerkretsen isolert fra PCB-jord for å unngå støy.
+\- Vikle sekundær (200 t) med 0.1 mm tråd. Legg inn isolasjon hver 50. vinding.
+
+\- Vikle tilbakekobling (5 t) med 0.2 mm tråd over sekundæren, med isolasjon.
+
+\- Monter kjernehalvdelene med luftgap og lim sammen. Mål induktans: primær \~34.5 µH, sekundær \~13.8 mH. Juster gapet kun hvis nødvendig.
 
 
 
-\## Produksjon
+\## Gnistgap
 
-\- Design PCB-en i KiCad (eller tilsvarende) og generer Gerber-filer.
+1\. Kapp to 15 mm lange biter av 1.6 mm wolframelektrode. Slip endene flate.
 
-\- Bestill fra f.eks. JLCPCB eller et annet prototyping-firma.
+2\. Monter dem i en holder av plexiglass med messingskruer slik at avstanden kan justeres.
 
-\- Alternativt kan du bruke et stripboard (veroboard) og lodde komponentene for hånd, men da må du være ekstra nøye med isolasjonsavstander.
+3\. For trigger: bor et 1 mm hull midt mellom elektrodene. Lim inn en tynn, isolert ledning (0.2 mm emaljert) med 0.5 mm klaring til begge hovedelektroder. Denne ledningen er triggerelektroden.
+
+4\. Still inn gapet til ca. 0.5 mm ved hjelp av et blad (følerlære). Dette kan finjusteres under testing.
+
+
+
+\## Spole
+
+1\. 3D-print en sirkulær form med spiralrille. Sporet skal ha senterdiametre: innerste vinding 20 mm, ytterste vinding 100 mm, med 4 jevnt fordelte vindinger. Rilledybde 2.5 mm.
+
+2\. Vikle 4 tørn 10 AWG tråd i rillen, lim med superlim underveis.
+
+3\. La to ender stikke ut (minst 15 cm) for tilkobling. Fjern emaljen fra endene med sandpapir.
+
+
+
+\## Sluttmontering
+
+1\. Plasser PCB, batterier og gnistgap i håndtaket (3D-printet). Håndtaket bør ha utsparinger for brytere og LED.
+
+2\. Koble piezo-tenneren til trigger-elektroden. Den ene ledningen fra piezo går til triggerelektroden, den andre til gnistgapets jordside (ikke PCB-jord). Hold triggerkretsen isolert fra resten av elektronikken.
+
+3\. Koble hovedkondensator C1 mellom utgang (katode D1b) og jord. Bruk korte, tykke ledninger (minst 2.5 mm²) for å minimere induktans.
+
+4\. Koble gnistgapet mellom C1 pluss og spole. Spolens andre ende til jord (C1 minus). \*\*Disse forbindelsene må være korte og tykke – de fører pulsstrømmen.\*\*
+
+5\. Isoler alle høyspentforbindelser med krympestrømpe eller silikon.
+
+6\. Monter spolen foran på hodet, og fest hodet til håndtaket.
+
+
+
+\## Første gangs oppstart
+
+1\. Sjekk alle loddinger og tilkoblinger visuelt.
+
+2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Det skal ikke være kortslutning (0 Ω). Forventet motstand avhenger av målemetode; sjekk at bleeder (1 MΩ) og LED-gren (220 kΩ) er tilkoblet, men ikke forvent en eksakt verdi.
+
+3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V i løpet av 5–10 sekunder. LED skal lyse.
+
+4\. Slipp S1. Spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
+
+5\. Test trigger: Lad opp til 450 V, trykk på piezo-knappen. Du skal høre et skarpt smell og se en gnist i gapet. Hvis ikke, juster gapet eller sjekk piezo-tilkobling.
 
 
 

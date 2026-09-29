@@ -32,11 +32,11 @@
 \draw (6,-0.5) -- (Q1.gate);
 \draw (Q1.gate) to[resistor, l=R3] (Q1.source);
 \draw (Q1.gate) to[diode, l=D4] ++(0,-1) to[Zener diode, l=D2] (Q1.source);
-% Startmotstand
-\draw (4,2) to[resistor, l=R\_start] (6,2);
+% Startmotstand (endret til 100k)
+\draw (4,2) to[resistor, l=R\_start] (Q1.gate);
 % Sekundærvikling (200 t) med dot (motsatt polaritet)
-\draw (4,2) -- (4,3) to[inductor, l=200\,t, name=sec] (8,3);
-\node at (6,3.5) {$\bullet$};
+\draw (0,0) to[inductor, l=200\,t, name=sec] (8,3);
+\node at (4,3.5) {$\bullet$};
 % Likeretterdioder (to i serie)
 \draw (8,3) to[diode, l=D1a] (8,2) to[diode, l=D1b] (8,1);
 % Hovedkondensator C1 (500 V)
@@ -68,7 +68,7 @@
 \item D3: Grønn LED
 \item D4: 1N4148
 \item D5: UF4007 (snubber)
-\item R\_start: 220 k$\Omega$ / 0,25 W (oppstart)
+\item R\_start: 100 k$\Omega$ / 0,25 W (oppstart)
 \item R2: 10 k$\Omega$ / 0,25 W (snubber)
 \item R3: 10 k$\Omega$ / 0,25 W (gate-utladning)
 \item R11: 1 k$\Omega$ / 25 W (utladning, pulsratet)

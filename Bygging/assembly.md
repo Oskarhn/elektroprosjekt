@@ -4,6 +4,8 @@
 
 \## Sikkerhetsregler
 
+
+
 \- Arbeid alltid på et ryddig, isolerende underlag.
 
 \- Bruk vernebriller og isolerende hansker ved testing.
@@ -18,11 +20,15 @@
 
 \## Forberedelser
 
+
+
 Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (minst 100 MHz), høyspenningsprobe (100:1), vernebriller, isolerende hansker, varmepistol, superlim, 3D-printer (for kabinett og spoleform).
 
 
 
 \## PCB-montering
+
+
 
 1\. Lodde komponentene på PCB i rekkefølge: motstander, dioder, MOSFET, LED, brytere, transformator.
 
@@ -52,11 +58,15 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \### Viklingspolaritet
 
+
+
 Marker startenden på hver vikling under vikling. Startenden brukes som prikkmerket terminal i koblingsskjemaet.
 
 
 
 For koblingen i dette prosjektet:
+
+
 
 \- \*\*Primær P, 10 vindinger:\*\* prikkmerket terminal kobles til +45 V. Den andre terminalen kobles mot Q1 drain.
 
@@ -88,6 +98,8 @@ Monter kjernehalvdelene. Mål primærinduktansen før kretsen spenningssettes. I
 
 \## Gnistgap
 
+
+
 1\. Kapp to 15 mm lange biter av 1.6 mm wolframelektrode. Slip endene flate.
 
 2\. Monter dem i en holder av plexiglass med messingskruer slik at avstanden kan justeres.
@@ -100,6 +112,8 @@ Monter kjernehalvdelene. Mål primærinduktansen før kretsen spenningssettes. I
 
 \## Spole
 
+
+
 1\. 3D-print en sirkulær form med spiralrille. Sporet skal ha senterdiametre: innerste vinding 20 mm, ytterste vinding 100 mm, med 4 jevnt fordelte vindinger. Rilledybde 2.5 mm.
 
 2\. Vikle 4 tørn 10 AWG tråd i rillen, lim med superlim underveis.
@@ -109,6 +123,8 @@ Monter kjernehalvdelene. Mål primærinduktansen før kretsen spenningssettes. I
 
 
 \## Sluttmontering
+
+
 
 1\. Plasser PCB, batterier og gnistgap i håndtaket (3D-printet). Håndtaket bør ha utsparinger for brytere og LED.
 
@@ -126,13 +142,23 @@ Monter kjernehalvdelene. Mål primærinduktansen før kretsen spenningssettes. I
 
 \## Første gangs oppstart
 
+
+
 1\. Sjekk alle loddinger og tilkoblinger visuelt.
+
+
 
 2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Det skal ikke være kortslutning (0 Ω). Forventet motstand avhenger av målemetode; sjekk at bleeder (1 MΩ) og LED-gren (220 kΩ) er tilkoblet, men ikke forvent en eksakt verdi.
 
-3\. Sett i batterier og slå på S3. Hold S1 inne og mål spenningen over C1 med egnet høyspenningsmåling. Spenningen skal stige mot 450 V. Designmålet for ladetid er 5–10 s, men faktisk ladetid er ikke kjent før den er målt. LED skal lyse.
+
+
+3\. Sett i batterier og slå på S3. Koble egnet høyspenningsmåling over C1 før S1 aktiveres. Kretsen har ingen automatisk avkobling ved 450 V. Hold derfor S1 inne bare under kontinuerlig overvåking og slipp S1 ved eller før 450 V. Designmålet for ladetid er 5–10 s, men faktisk ladetid må måles. Laderen skal aldri stå aktivert uten overvåking.
+
+
 
 4\. Slipp S1. Spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
 
-5\. Test trigger: Lad opp til 450 V, trykk på piezo-knappen. Du skal høre et skarpt smell og se en gnist i gapet. Hvis ikke, juster gapet eller sjekk piezo-tilkobling.
+
+
+5\. Test trigger: Lad opp til maksimalt 450 V under kontinuerlig spenningsmåling, trykk på piezo-knappen. Du skal høre et skarpt smell og se en gnist i gapet. Hvis ikke, avbryt ladingen, lad ut C1 og kontroller oppsettet før videre testing.
 

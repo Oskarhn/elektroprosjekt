@@ -54,31 +54,93 @@ Antatt total motstand $R = 0.1\,\Omega$ (må måles).
 \omega_d &= \sqrt{\omega_0^2 - \alpha^2} \approx 91700\,\text{rad/s}, \\
 f_d &= \frac{\omega_d}{2\pi} \approx 14.6\,\text{kHz}.
 \end{align}
+
 Første topp ved $t_p$ der $\tan(\omega_d t_p) = \omega_d/\alpha$:
 \begin{equation}
-\omega_d t_p = \arctan(91700/60241) \approx 0.99\,\text{rad} \Rightarrow t_p \approx 10.8\,\mu\text{s}.
+\omega_d t_p = \arctan(91700/60241) \approx 0.99\,\text{rad}
+\Rightarrow
+t_p \approx 10.8\,\mu\text{s}.
 \end{equation}
+
 Toppstrøm:
 \begin{equation}
-I_{\text{peak}} = \frac{V_0}{\omega_d L} e^{-\alpha t_p} \sin(\omega_d t_p) \approx 2580\,\text{A}.
+I_{\text{peak}} =
+\frac{V_0}{\omega_d L}
+e^{-\alpha t_p}
+\sin(\omega_d t_p)
+\approx 2580\,\text{A}.
 \end{equation}
-Periode: $T_d = 1/f_d \approx 68.5\,\mu\text{s}$. Envelope-tidskonstant: $\tau = 1/\alpha \approx 16.6\,\mu\text{s}$.
+
+Periode: $T_d = 1/f_d \approx 68.5\,\mu\text{s}$.
+Envelope-tidskonstant: $\tau = 1/\alpha \approx 16.6\,\mu\text{s}$.
 
 \section{Magnetfelt}
-Vindingenes senterradier: $r_k = 10, 23.33, 36.67, 50\,\text{mm}$.
+
+Vindingenes senterradier:
+$r_k = 10, 23.33, 36.67, 50\,\text{mm}$.
+
 \begin{equation}
-B(0) = \frac{\mu_0 I}{2} \sum_{k=1}^{4} \frac{1}{r_k} = \frac{4\pi\times10^{-7} \cdot 2580}{2} \left( \frac{1}{0.01} + \frac{1}{0.02333} + \frac{1}{0.03667} + \frac{1}{0.05} \right) \approx 0.308\,\text{T}.
+B(0)
+=
+\frac{\mu_0 I}{2}
+\sum_{k=1}^{4}\frac{1}{r_k}
+=
+\frac{4\pi\times10^{-7}\cdot2580}{2}
+\left(
+\frac{1}{0.01}
++
+\frac{1}{0.02333}
++
+\frac{1}{0.03667}
++
+\frac{1}{0.05}
+\right)
+\approx 0.308\,\text{T}.
 \end{equation}
 
 \section{Pickup-spenning}
-Pickup-spole: $N_p = 5$, diameter $2\,\text{cm}$ $\rightarrow$ areal $A_p = 3.14\times10^{-4}\,\text{m}^2$, avstand $z = 0.2\,\text{m}$.
-Feltet ved pickup: $B(z) \approx 0.849\,\text{mT}$ (beregnet i script).
-Maksimal $di/dt$: $di/dt(0) = V_0/L = 450 / 0.83\times10^{-6} \approx 5.42\times10^8\,\text{A/s}$.
+
+Pickup-spole: $N_p = 5$, diameter $2\,\text{cm}$
+$\rightarrow$
+areal $A_p = 3.14\times10^{-4}\,\text{m}^2$,
+avstand $z = 0.2\,\text{m}$.
+
+Feltet ved pickup:
+$B(z) \approx 0.849\,\text{mT}$ (beregnet i script).
+
+Maksimal $di/dt$:
+\[
+di/dt(0)
+=
+V_0/L
+=
+450/(0.83\times10^{-6})
+\approx
+5.42\times10^8\,\text{A/s}.
+\]
+
 \begin{equation}
-\frac{dB}{dt}(z) = \frac{\mu_0}{2} \sum_{k=1}^{4} \frac{r_k^2}{(r_k^2+z^2)^{3/2}} \cdot \frac{di}{dt} \approx 178\,\text{T/s}.
+\frac{dB}{dt}(z)
+=
+\frac{\mu_0}{2}
+\sum_{k=1}^{4}
+\frac{r_k^2}{(r_k^2+z^2)^{3/2}}
+\cdot
+\frac{di}{dt}
+\approx
+178\,\text{T/s}.
 \end{equation}
+
 \begin{equation}
-\mathcal{E}_{\text{max}} = N_p A_p \frac{dB}{dt} \approx 5 \cdot 3.14\times10^{-4} \cdot 178 \approx 0.279\,\text{V} = 279\,\text{mV}.
+\mathcal{E}_{\text{max}}
+=
+N_p A_p \frac{dB}{dt}
+\approx
+5 \cdot 3.14\times10^{-4} \cdot 178
+\approx
+0.279\,\text{V}
+=
+279\,\text{mV}.
 \end{equation}
 
 Faktisk verdi avhenger av nøyaktig geometri og måles.
@@ -90,15 +152,15 @@ Energien som lagres i hovedkondensatoren ved $450\,\text{V}$ er
 E_{\text{cap}} = 10.125\,\text{J}.
 \end{equation}
 
-Ved full spenning trekker LED-grenen omtrent $0.91\,\text{W}$ og
+Ved full spenning trekker LED-grenen omtrent $0.92\,\text{W}$ og
 bleeder-motstanden omtrent $0.20\,\text{W}$. Samlet stasjonær last ved
 $450\,\text{V}$ er derfor omtrent
 \begin{equation}
-P_{\text{cont}}(450\,\text{V}) \approx 1.11\,\text{W}.
+P_{\text{cont}}(450\,\text{V}) \approx 1.12\,\text{W}.
 \end{equation}
 
 Den eksakte gjennomsnittlige lastenergien under opplading er lavere enn å
-anta $1.11\,\text{W}$ gjennom hele ladeperioden, fordi taps-effekten avhenger
+anta $1.12\,\text{W}$ gjennom hele ladeperioden, fordi taps-effekten avhenger
 av kondensatorspenningen.
 
 Som et konservativt enkelt designestimat kan fullspenningslasten likevel
@@ -115,15 +177,15 @@ For et designmål på $10\,\text{s}$ gir dette
 \begin{equation}
 P_{\text{HV,design}}
 \approx
-\frac{10.125}{10}+1.11
-\approx 2.12\,\text{W}.
+\frac{10.125}{10}+1.12
+\approx 2.13\,\text{W}.
 \end{equation}
 
 For $5\,\text{s}$ blir det konservative estimatet
 \begin{equation}
 P_{\text{HV,design}}
 \approx
-\frac{10.125}{5}+1.11
+\frac{10.125}{5}+1.12
 \approx 3.14\,\text{W}.
 \end{equation}
 
@@ -134,39 +196,81 @@ ikke dokumentasjon på faktisk ladetid.
 Designmålet er omtrent $5$--$10\,\text{s}$, mens faktisk ladetid skal
 bestemmes eksperimentelt.
 
-
 \section{Komponentpåkjenninger}
 
 \subsection{Dioder}
 Reversspenning over likeretter:
 \begin{equation}
-V_{\text{rev}} = V_{\text{ut}} + \frac{N_s}{N_p} V_{\text{inn}} = 450 + 20 \cdot 45 = 1350\,\text{V}.
+V_{\text{rev}}
+=
+V_{\text{ut}}
++
+\frac{N_s}{N_p}V_{\text{inn}}
+=
+450 + 20\cdot45
+=
+1350\,\text{V}.
 \end{equation}
-To UF4007 i serie gir $2000\,\text{V}$ rating, men transientdeling må verifiseres.
+
+To UF4007 i serie gir $2000\,\text{V}$ nominell samlet rating, men transientdeling må verifiseres.
 
 \subsection{MOSFET}
-Drain-spenning: $V_{\text{ds}} = V_{\text{inn}} + V_{\text{reflektert}} + V_{\text{leak}}$. Reflektert: $V_{\text{ut}}/(N_s/N_p) = 450/20 = 22.5\,\text{V}$. Lekkinduktansspike må dempes av snubber. IRFP450 tåler $500\,\text{V}$, men margin må verifiseres ved måling.
+
+Drain-spenning:
+$V_{\text{ds}} = V_{\text{inn}} + V_{\text{reflektert}} + V_{\text{leak}}$.
+
+Reflektert:
+$V_{\text{ut}}/(N_s/N_p) = 450/20 = 22.5\,\text{V}$.
+
+Lekkinduktansspike må dempes av snubber.
+IRFP450 tåler $500\,\text{V}$, men margin må verifiseres ved måling.
 
 \subsection{Snubber}
-Med $L_p = 34.5\,\mu\text{H}$ (gapped), lekkinduktans $1.7\,\mu\text{H}$, toppstrøm $\sim 2\,\text{A}$: energi $0.5 \cdot 1.7\times10^{-6} \cdot 4 = 3.4\,\mu\text{J}$. Snubberverdier $10\,\text{nF}$, $10\,\text{k}\Omega$ gir demping, men endelig verifisering krever måling av drain-transient.
+
+Med $L_p = 34.5\,\mu\text{H}$ (gapped),
+lekkinduktans $1.7\,\mu\text{H}$ og toppstrøm $\sim 2\,\text{A}$:
+
+\[
+E =
+0.5 \cdot 1.7\times10^{-6}\cdot4
+=
+3.4\,\mu\text{J}.
+\]
+
+Snubberverdier $10\,\text{nF}$ og $10\,\text{k}\Omega$ gir et startpunkt,
+men endelig verifisering krever måling av drain-transient.
 
 \section{Transformator}
-E20/10/6 N27 med 0.1 mm luftgap: $A_L \approx 345\,\text{nH/t}^2$.
+
+E20/10/6 N27 med spesifisert gappet konfigurasjon:
+$A_L \approx 345\,\text{nH/t}^2$.
+
 \begin{align}
-L_p &= 345 \times 10^{-9} \cdot 10^2 = 34.5\,\mu\text{H}, \\
-L_s &= 34.5\,\mu\text{H} \cdot (200/10)^2 = 13.8\,\text{mH}.
+L_p &= 345 \times 10^{-9} \cdot 10^2
+= 34.5\,\mu\text{H}, \\
+L_s &= 34.5\,\mu\text{H}\cdot(200/10)^2
+= 13.8\,\text{mH}.
 \end{align}
 
 \section{Kontinuerlig last}
-LED-gren: $220\,\text{k}\Omega$, strøm $2.05\,\text{mA}$, effekt $0.92\,\text{W}$.
-Bleeder: $1\,\text{M}\Omega$, strøm $0.45\,\text{mA}$, effekt $0.20\,\text{W}$.
-Total kontinuerlig last ved $450\,\text{V}$: $1.12\,\text{W}$.
 
-\section{Repetisjonsrate}
-Ladetid avhenger av ladestrøm og kontinuerlig last. Med antatt gjennomsnittlig ladestrøm $30\,\text{mA}$ ...
-...
-Faktisk ladetid forventes $5$--$10\,\text{s}$ ...
+LED-gren:
+$220\,\text{k}\Omega$,
+strøm $\approx 2.04\,\text{mA}$,
+effekt $\approx 0.92\,\text{W}$.
+
+Bleeder:
+$1\,\text{M}\Omega$,
+strøm $0.45\,\text{mA}$,
+effekt $\approx 0.20\,\text{W}$.
+
+Total kontinuerlig last ved $450\,\text{V}$:
+\[
+P_{\text{cont}} \approx 1.12\,\text{W}.
+\]
 
 \section{Konklusjon}
+
 Alle tall er teoretiske. Fysiske målinger er nødvendige for validering.
+
 \end{document}

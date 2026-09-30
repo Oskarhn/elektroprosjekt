@@ -16,15 +16,23 @@ Vi har valgt en kondensatorbank (én stor kondensator) med et trigget gnistgap. 
 
 
 
-\## Valg av ladekrets
+\### Transformatorpolaritet
 
-En selvoscillerende flyback-omformer (blocking-oscillator) er valgt fordi den:
 
-\- Er enkel og krever ingen mikrokontroller.
 
-\- Kan lade kondensatoren fra et lavspent batteri (45 V) til 450 V.
+T1 har tre viklinger med definert polaritet:
 
-\- Bruker få komponenter (MOSFET, transformator, diode, zener, motstander, kondensator, snubber).
+
+
+\- Primær P: prikkmerket terminal til +45 V.
+
+\- Feedback FB: prikkmerket terminal mot C3/gate.
+
+\- Sekundær S: prikkmerket terminal mot C1-/GND.
+
+
+
+Feedback- og sekundærviklingen er dermed koblet med motsatt polaritet relativt til primærviklingen. Dette gir positiv gate-feedback under Q1 turn-on og sørger for at sekundærlikeretteren er sperret under ON-perioden og leder ved flyback-turn-off.
 
 
 
@@ -68,9 +76,33 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \## Beskyttelseskretser
 
-\- \*\*Gatebeskyttelse:\*\* D2 (15 V zener) med katode til gate, anode til source begrenser positiv VGS til \~15 V. D4 (1N4148) med anode til source, katode til gate begrenser negativ VGS til \~ –0.7 V. Dette holder VGS innenfor ±20 V.
 
-\- \*\*Snubber over primærvikling:\*\* En konvensjonell RCD-flyback-clamp (D5, R2, C2) demper drain-spenningstransienter når MOSFET-en slår seg av. Verdiene er veiledende og må valideres med måling av drain-spenning.
+
+\*\*Gatebeskyttelse:\*\* Gate og source på Q1 har to separate beskyttelsesgrener.
+
+
+
+D2 er en 15 V zenerdiode med katode mot gate og anode mot source. Den begrenser positiv \\(V\_{GS}\\) til omtrent zenerspenningen.
+
+
+
+D4 er en 1N4148 med anode mot source og katode mot gate. Den begrenser negativ \\(V\_{GS}\\) til omtrent ett vanlig diodefall.
+
+
+
+D2 og D4 skal altså ikke stå i serie.
+
+
+
+\*\*Gate-utladning:\*\* R3 = 10 kΩ gir gate en definert retur til source når positiv feedback forsvinner.
+
+
+
+\*\*Oppstart:\*\* R\_start = 100 kΩ er koblet fra +45 V-forsyningen til gate. Motstanden gir kun initial bias. Den skal ikke alene betraktes som tilstrekkelig til å drive Q1 fullt på; videre gate-drive kommer fra feedbackviklingen.
+
+
+
+\*\*RCD-clamp:\*\* D5 leder drain-transienter inn i et clamp-nettverk der R2 og C2 ligger parallelt mot +45 V-forsyningen. Verdiene 10 kΩ og 10 nF er foreløpige og må valideres ved måling av drain-spenning.
 
 
 

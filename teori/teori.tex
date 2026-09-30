@@ -65,8 +65,38 @@ Enheten består av tre hoveddeler:
 \item \textbf{Antennespole:} En flat spiralspole som omdanner strømpulsen til et magnetfelt.
 \end{enumerate}
 
-\subsection{Ladekrets (flyback-omformer)}
-Flyback-omformeren er en selvoscillerende krets basert på en MOSFET, en ferritttransformator og en diode. En startmotstand (R\_start) gir en liten gate-spenning som åpner MOSFET-en. Strøm gjennom primærviklingen induserer en spenning i tilbakekoblingsviklingen som via en kondensator (C3, DC-blokkering) driver gaten positivt, og MOSFET-en åpner helt. Når kjernen mettes, faller tilbakekoblingsspenningen, gate lades ut gjennom R3, og MOSFET-en slår seg av. Den lagrede energien overføres til sekundærviklingen og likerettes for å lade hovedkondensatoren. En RCD-snubber demper spenningstopper.
+\subsection{Ladekrets (selvoscillerende flyback)}
+
+Ladekretsen er basert på en selvoscillerende blocking-/flyback-topologi med
+MOSFET-en Q1 og transformatoren T1.
+
+Primærviklingen har 10 vindinger. Den prikkmerkede terminalen er koblet til
+$+45\,\text{V}$, mens den andre terminalen går til drain på Q1.
+
+En oppstartsmotstand $R_{\text{start}}$ gir en liten initial gatestrøm slik at
+Q1 begynner å lede. Tilbakekoblingsviklingen har 5 vindinger og er koblet med
+motsatt polaritet relativt til primærviklingen: den prikkmerkede terminalen
+ligger mot C3 og gate, mens den andre terminalen ligger mot $+45\,\text{V}$.
+
+Når primærstrømmen begynner å øke, induseres dermed en spenning i
+tilbakekoblingsviklingen som driver gate i positiv retning. Dette gir den
+regenerative tilbakekoblingen som er nødvendig for selvoscillasjon.
+
+Gate-spenningen begrenses av gatebeskyttelsen D2/D4, mens R3 gir en definert
+utladningsvei for gate. Den nøyaktige turn-off-mekanismen og
+svitsjefrekvensen avhenger av transformatorens magnetiske egenskaper,
+tilbakekoblingen, gatekretsen og parasittiske komponenter. Disse størrelsene
+må derfor verifiseres ved måling og bør ikke betraktes som fast bestemt av
+den forenklede modellen alene.
+
+Sekundærviklingen har 200 vindinger og motsatt polaritet relativt til
+primæren. Den prikkmerkede sekundærterminalen ligger mot C1-/retur. Under
+Q1s ON-periode er likeretteren derfor sperret. Når Q1 slår av, reverseres
+viklingsspenningene, sekundærdiodene leder, og energien overføres til C1.
+
+D5, R2 og C2 utgjør en RCD-clamp for å begrense drain-transienter forårsaket
+av lekkinduktans. De endelige snubberverdiene må verifiseres ved måling av
+$V_{DS}$.
 
 \subsection{Gnistgap og trigger}
 Gnistgapet består av to wolframelektroder med en avstand på ~0,5 mm. En piezoelektrisk tenner genererer en høy spenningspuls (>10 kV) som ioniserer gapet, slik at hovedgnisten kan dannes.

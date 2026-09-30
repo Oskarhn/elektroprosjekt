@@ -38,9 +38,7 @@
 
 \begin{circuitikz}[american, x=0.86cm, y=0.92cm, every node/.style={font=\footnotesize}]
 
-% ---------------------------------------------------------------------------
 % Seksjonsbakgrunner
-% ---------------------------------------------------------------------------
 \begin{scope}[on background layer]
   \fill[softgray, rounded corners=2mm] (-0.4,-0.65) rectangle (5.25,9.45);
   \fill[softgray, rounded corners=2mm] (5.55,-0.65) rectangle (14.35,9.45);
@@ -53,16 +51,12 @@
 \node[font=\bfseries\small, text=textgray] at (16.5,9.1) {Sekundær / likeretter};
 \node[font=\bfseries\small, text=textgray] at (24.9,9.1) {450 V lagring og utgang};
 
-% ---------------------------------------------------------------------------
-% Felles GND / C1-
-% ---------------------------------------------------------------------------
+% Felles retur / C1-
 \draw[line width=0.75pt] (0.35,0) -- (30.55,0);
 \node[ground] at (0.35,0) {};
 \node[below=1mm, text=textgray] at (2.3,0) {GND / C1$-$};
 
-% ---------------------------------------------------------------------------
 % 1. 45 V inngang
-% ---------------------------------------------------------------------------
 \draw (0.95,0)
   to[battery, l_={\SI{45}{\volt}}] (0.95,7.75)
   -- (1.35,7.75)
@@ -70,17 +64,19 @@
   to[switch, l={S3}] (3.75,7.75)
   to[switch, l={S1}] (4.95,7.75);
 
+% Felles +45 V-buss for primær, feedback og R_start
+\coordinate (VIN) at (4.95,7.75);
+\draw (VIN) -- (11.75,7.75);
 
-% ---------------------------------------------------------------------------
 % 2. Primær, Q1 og gatekrets
-% ---------------------------------------------------------------------------
-% Primær
-\draw (4.95,7.75) -- (6.55,7.75)
+% Primær: prikk på +45 V-siden
+\draw (6.55,7.75)
   to[inductor, l_={P: 10 t}] (6.55,5.0)
   -- (6.55,4.72);
-\fill (6.33,7.1) circle (1.35pt);
+\fill (6.33,7.10) circle (1.35pt);
+\node[left=1mm, text=textgray] at (6.15,7.10) {$\bullet$P};
 
-% MOSFET speilvendt slik at gate peker mot gatekretsen til høyre
+% MOSFET
 \node[nmos, xscale=-1, anchor=drain] (Q1) at (6.55,4.72) {};
 \draw (Q1.source) -- (6.55,0);
 \node[below left=0mm and 1mm of Q1, align=right] {Q1\\IRFP450};
@@ -91,14 +87,16 @@
 \fill (GATE) circle (1.3pt);
 \node[above=1mm of GATE, text=textgray] {GATE};
 
-% Feedbackvikling og C3
-\draw (4.95,7.75) -- (10.15,7.75)
+% Feedbackvikling: motsatt polaritet av primær.
+% Prikk på nedre terminal, mot C3/gate.
+\draw (10.15,7.75)
   to[inductor, l={FB: 5 t}] (10.15,5.55)
   to[capacitor, l={C3}] (10.15,4.20)
   -- (GATE);
-\fill (10.37,6.95) circle (1.35pt);
+\fill (10.37,5.62) circle (1.35pt);
+\node[right=1mm, text=textgray] at (10.48,5.62) {$\bullet$FB};
 
-% Startmotstand
+% Startmotstand - faktisk tilkoblet +45 V-bussen
 \draw (11.75,7.75)
   to[resistor, l={R$_{start}$}] (11.75,4.20)
   -- (GATE);
@@ -107,12 +105,21 @@
 \draw (9.05,4.20)
   to[resistor, l_={R3}] (9.05,0);
 
-% Gate clamp
-\draw (9.05,4.20) -- (13.15,4.20)
-  to[Zener diode, l={D2}] (13.15,2.55)
-  to[diode, l={D4}] (13.15,0);
+% Gatebeskyttelse: to separate gate-source-grener.
+% Source ligger på GND-bussen. Begge grenene tegnes fra source/GND mot gate,
+% slik at anode er ved source og katode ved gate.
+% D2: 15 V zener, katode til gate, anode til source.
+\draw (12.05,0)
+  to[Zener diode] (12.05,4.20)
+  -- (GATE);
+\node[left=1mm, text=textgray] at (12.05,2.10) {D2};
+% D4: vanlig diode, anode til source, katode til gate, for negativ VGS-klem.
+\draw (13.55,0)
+  to[diode] (13.55,4.20)
+  -- (GATE);
+\node[right=1mm, text=textgray] at (13.55,2.10) {D4};
 
-% RCD snubber: drain -> D5 -> R2||C2 -> forsyning
+% RCD snubber: drain -> D5 -> clamp-node -> R2||C2 -> +45 V
 \coordinate (DRAIN) at (6.55,4.72);
 \draw (DRAIN) -- (7.45,4.72)
   to[diode, l={D5}] (7.45,5.95)
@@ -124,23 +131,22 @@
 \node[left=1mm, text=textgray] at (7.85,6.85) {R2};
 \node[right=1mm, text=textgray] at (8.85,6.85) {C2};
 
-% ---------------------------------------------------------------------------
-% 3. Sekundær og to seriedioder
-% ---------------------------------------------------------------------------
+% 3. Sekundær og likeretter
+% Sekundær har motsatt dot-polaritet av primær slik at D1 sperrer under Q1 ON
+% og leder ved flyback-turn-off.
 \draw (15.45,0)
   to[inductor, l_={S: 200 t}] (15.45,4.95)
   to[diode, l={D1a}] (15.45,6.35)
   to[diode, l={D1b}] (15.45,7.75)
   -- (18.0,7.75);
-\fill (15.23,4.15) circle (1.35pt);
+\fill (15.23,0.78) circle (1.35pt);
+\node[left=1mm, text=textgray] at (14.88,0.78) {$\bullet$S};
 
 \draw[hvred, line width=0.95pt] (18.0,7.75) -- (30.45,7.75);
 \node[above=2mm, text=hvred, font=\bfseries\footnotesize] at (18.0,7.75)
   {HV+ ca. 450 V DC};
 
-% ---------------------------------------------------------------------------
 % 4. C1, bleeder, indikator og sikkerhetsutladning
-% ---------------------------------------------------------------------------
 \draw (19.65,7.75)
   to[capacitor, l={C1}] (19.65,0);
 
@@ -159,33 +165,27 @@
   to[resistor, l={R11}] (26.90,2.20)
   -- (26.90,0);
 
-% ---------------------------------------------------------------------------
-% 5. Pulsbane - separat og tydelig retur til C1-/GND
-% ---------------------------------------------------------------------------
+% 5. Separat pulsbane
 \draw[hvred, line width=0.9pt] (30.05,7.75)
   to[sparkgap, l_={G1}] (30.05,5.35)
   to[inductor, l_={L1}] (30.05,2.15)
   -- (30.05,0);
-
 \node[text=hvred, font=\bfseries\scriptsize] at (30.0,8.55) {PULSBANE};
 
-% Piezo vises som isolert trigger, ikke som del av PCB-GND
-
+% Isolert piezo-trigger
 \node[draw=midgray, rounded corners=1mm, fill=white, align=center, inner sep=3pt]
   (PZ) at (28.45,6.55) {Piezo\\trigger};
 \draw[dashed, draw=midgray, -{Stealth[length=2mm]}]
   (PZ.east) -- (29.85,6.10);
 
-% ---------------------------------------------------------------------------
-% Små forklarende merker
-% ---------------------------------------------------------------------------
+% Transformator-identifikasjon
 \draw[dashed, draw=midgray] (6.0,8.45) -- (16.05,8.45);
 \node[fill=softgray, inner sep=1pt, text=textgray] at (11.0,8.45)
-  {T1: 10:200:5};
+  {T1: 10:200:5; prikkene viser viklingspolaritet};
 
 \end{circuitikz}
 
-\vspace{4mm}
+\par\vspace{4mm}
 \noindent
 \begin{tabular}{@{}p{0.31\textwidth}p{0.32\textwidth}p{0.32\textwidth}@{}}
 \textbf{Ladesiden} & \textbf{450 V-siden} & \textbf{Utladning / puls} \\
@@ -206,9 +206,9 @@ S1 & Ladeknapp & momentan, lavspent \\
 S2 & Utladningsknapp & momentan, minst 450 V DC, 0.5 A \\
 Q1 & N-kanal MOSFET & IRFP450 \\
 D1a, D1b & Hurtigdioder & UF4007, to i serie \\
-D2 & Zenerdiode & BZX55C15, 15 V \\
+D2 & Zenerdiode & BZX55C15, 15 V; katode mot gate \\
 D3 & LED & grønn \\
-D4 & Småsignaldiode & 1N4148 \\
+D4 & Småsignaldiode & 1N4148; anode mot source, katode mot gate \\
 D5 & Snubberdiode & UF4007 \\
 R$_{start}$ & Oppstartsmotstand & 100 k$\Omega$, 0.25 W \\
 R2 & Snubbermotstand & 10 k$\Omega$, 0.25 W \\
@@ -226,7 +226,7 @@ L1 & Flat spiralspole & 4 vindinger, 10 AWG \\
 
 \vfill
 \noindent\footnotesize
-\textbf{Merknad:} Skjemaet er ryddet etter prosjektfilene. Pulsbanen er tegnet som
-C1+ $\rightarrow$ G1 $\rightarrow$ L1 $\rightarrow$ C1-/GND, slik monterings- og PCB-beskrivelsen angir.
+\textbf{Merknad:} Pulsbanen er C1+ $\rightarrow$ G1 $\rightarrow$ L1 $\rightarrow$ C1-/GND.
+R$_{start}$ er koblet til +45 V-bussen. Primærviklingen har prikk på +45 V-siden, mens feedback- og sekundærviklingene har motsatt polaritet for den dokumenterte blocking-/flyback-funksjonen. Gatebeskyttelsen er tegnet som to separate gate-source-grener.
 
 \end{document}

@@ -36,17 +36,53 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 \## Transformatorvikling
 
-\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27), med spoleholder. Bruk en kjerne med fabrikkspesifisert luftgap tilsvarende $A\_L \\approx 345\\,\\text{nH/t}^2$, eller lag et gap eksperimentelt med et 0.1 mm lag Kapton-tape. \*\*Mål alltid $L\_p$ etter montering\*\* – ikke anta at tapetykkelsen gir nøyaktig $A\_L = 345\\,\\text{nH/t}^2$.
 
-\- \*\*Tråd:\*\* 0.5 mm (primær), 0.1 mm (sekundær), 0.2 mm (tilbakekobling).
 
-\- Vikle primær (10 t) med 0.5 mm tråd jevnt fordelt over spoleholderen. Legg isolasjonstape.
+\- \*\*Kjerne:\*\* E20/10/6 ferritt (N27) med spoleholder. Bruk helst en fabrikkgappet kjerne som tilsvarer omtrent \\(A\_L = 345\\,\\text{nH/t}^2\\). Hvis gapet lages manuelt med spacer/Kapton, er 0,1 mm kun en startverdi. Mål alltid faktisk primærinduktans etter montering.
 
-\- Vikle sekundær (200 t) med 0.1 mm tråd. Legg inn isolasjon hver 50. vinding.
 
-\- Vikle tilbakekobling (5 t) med 0.2 mm tråd over sekundæren, med isolasjon.
 
-\- Monter kjernehalvdelene med luftgap og lim sammen. Mål induktans: primær \~34.5 µH, sekundær \~13.8 mH. Juster gapet kun hvis nødvendig.
+\- \*\*Målverdi:\*\* Med 10 primærvindinger og \\(A\_L \\approx 345\\,\\text{nH/t}^2\\) er forventet primærinduktans omtrent 34,5 µH. Sekundærens beregnede induktans er omtrent 13,8 mH.
+
+
+
+\- \*\*Tråd:\*\* 0,5 mm primær, 0,1 mm sekundær og 0,2 mm tilbakekobling.
+
+
+
+\### Viklingspolaritet
+
+Marker startenden på hver vikling under vikling. Startenden brukes som prikkmerket terminal i koblingsskjemaet.
+
+
+
+For koblingen i dette prosjektet:
+
+\- \*\*Primær P, 10 vindinger:\*\* prikkmerket terminal kobles til +45 V. Den andre terminalen kobles mot Q1 drain.
+
+\- \*\*Feedback FB, 5 vindinger:\*\* prikkmerket terminal kobles mot C3/gate. Den andre terminalen kobles til +45 V.
+
+\- \*\*Sekundær S, 200 vindinger:\*\* prikkmerket terminal kobles til C1-/GND. Den andre terminalen kobles mot D1a.
+
+
+
+Feedback- og sekundærviklingen er dermed elektrisk koblet med motsatt polaritet relativt til primæren.
+
+
+
+Vikle primær 10 vindinger jevnt over spoleholderen og legg et isolasjonslag over den.
+
+
+
+Vikle sekundær 200 vindinger. Legg inn egnet isolasjon mellom lagene og ekstra isolasjon mellom primær og sekundær.
+
+
+
+Vikle feedbackviklingen 5 vindinger og merk begge endene tydelig.
+
+
+
+Monter kjernehalvdelene. Mål primærinduktansen før kretsen spenningssettes. Ikke anta at et bestemt spacermål automatisk gir riktig \\(A\_L\\).
 
 
 
@@ -94,7 +130,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Det skal ikke være kortslutning (0 Ω). Forventet motstand avhenger av målemetode; sjekk at bleeder (1 MΩ) og LED-gren (220 kΩ) er tilkoblet, men ikke forvent en eksakt verdi.
 
-3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V. Designmål for ladetid er 5–10 s; faktisk tid må måles. LED skal lyse.
+3\. Sett i batterier og slå på S3. Hold S1 inne og mål spenningen over C1 med egnet høyspenningsmåling. Spenningen skal stige mot 450 V. Designmålet for ladetid er 5–10 s, men faktisk ladetid er ikke kjent før den er målt. LED skal lyse.
 
 4\. Slipp S1. Spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
 

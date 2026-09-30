@@ -68,7 +68,7 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \## Beskyttelseskretser
 
-\- \*\*Gatebeskyttelse:\*\* En 15 V zenerdiode (D2) med katode til gate, og en 1N4148 (D4) med katode til gate og anode til zenerens anode. Positiv VGS klemmer ved \~15.7 V (zener-revers + diode-forover). Negativ VGS klemmer ved \~ –1.4 V (diode-forover + zener-forover). Dette holder VGS innenfor ±20 V.
+\- \*\*Gatebeskyttelse:\*\* D2 (15 V zener) med katode til gate, anode til source begrenser positiv VGS til \~15 V. D4 (1N4148) med anode til source, katode til gate begrenser negativ VGS til \~ –0.7 V. Dette holder VGS innenfor ±20 V.
 
 \- \*\*Snubber over primærvikling:\*\* En konvensjonell RCD-flyback-clamp (D5, R2, C2) demper drain-spenningstransienter når MOSFET-en slår seg av. Verdiene er veiledende og må valideres med måling av drain-spenning.
 

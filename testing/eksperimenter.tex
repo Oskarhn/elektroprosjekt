@@ -12,13 +12,22 @@
 
 \begin{enumerate}
 \item \textbf{Måle spoleinduktans:} Bruk et LCR-meter for å måle $L$ for spolen. Sammenlign med Wheelers estimat ($\sim 0.83\,\mu\text{H}$). Mål også ESR.
-\item \textbf{Måle toppstrøm:} Bruk en Rogowski-spole rundt en av ledningene til spolen. Integrer signalet for å finne strømmen. Alternativt kan en strømtransformator med passende byrde brukes direkte (ikke integrer). Plott strøm som funksjon av tid.
-\item \textbf{Kartlegge magnetfelt:} Bruk en pickup-spole (5 vindinger, 2 cm diameter) og mål indusert spenning som funksjon av avstand og vinkel. Plott $V_{\text{ind}}$ vs. avstand og sammenlign med modellen.
-\item \textbf{Sammenligne spoledesign:} Test ulike antall vindinger (3, 4, 5) og diametre. Mål resonansfrekvens og toppstrøm. Sammenlign med teoretisk modell for å validere beregningene.
-\item \textbf{Teste skjerming:} Plasser forskjellige materialer (aluminiumsfolie, kobbernett, stålplate) mellom spolen og en mottakerkrets. Mål dempingen av den induserte spenningen.
-\item \textbf{Karakterisere ladetid:} Mål ladetid fra 0 V til 450 V med ulike batterityper (alkaliske). Beregn effektiv ladeeffekt.
-\item \textbf{Måle første topptid:} Bruk en høyhastighets pickup-spole og oscilloskop for å måle tiden til første strømtopp. Sammenlign med teoretisk verdi ($\sim 10.8\,\mu\text{s}$).
-\item \textbf{Måle første strømtopp:} Bruk en pickup-spole. Siden $V_{\text{pickup}} \propto -di/dt$, er strømtoppen ved nullkryssingen etter den første pickup-spenningstoppen. Integrer pickup-signalet eller finn nullkryssingen for å bestemme $t_p$.
 
+\item \textbf{Måle toppstrøm:}
+  \begin{itemize}
+  \item \textbf{Rogowski-spole:} $V_{\text{ut}} \propto di/dt$. Integrer det kalibrerte signalet for å rekonstruere strømmen.
+  \item \textbf{Strømtransformator:} Med korrekt byrde og innenfor båndbredde/mettningsgrenser er sekundærstrømmen tilnærmet proporsjonal med primærstrømmen. Ikke integrer.
+  \end{itemize}
+  Plott strøm som funksjon av tid. Sammenlign med teoretisk verdi for antatt $R$.
+
+\item \textbf{Kartlegge magnetfelt:} Bruk en pickup-spole (5 vindinger, 2 cm diameter) og mål indusert spenning som funksjon av avstand og vinkel. Plott $V_{\text{ind}}$ vs. avstand og sammenlign med modellen.
+
+\item \textbf{Sammenligne spoledesign:} Test ulike antall vindinger (3, 4, 5) og diametre. Mål resonansfrekvens og toppstrøm. Sammenlign med teoretisk modell for å validere beregningene.
+
+\item \textbf{Teste skjerming:} Plasser forskjellige materialer (aluminiumsfolie, kobbernett, stålplate) mellom spolen og en mottakerkrets. Mål dempingen av den induserte spenningen.
+
+\item \textbf{Karakterisere ladetid:} Mål ladetid fra 0 V til 450 V med ulike batterityper (alkaliske). Beregn effektiv ladeeffekt.
+
+\item \textbf{Måle første strømtopp:} Bruk en pickup-spole. Siden $V_{\text{pickup}} \propto -di/dt$, er strømtoppen ved nullkryssingen etter den første pickup-spenningstoppen. Integrer pickup-signalet eller finn nullkryssingen for å bestemme $t_p$. Sammenlign med teoretisk verdi ($\sim 10.8\,\mu\text{s}$).
 \end{enumerate}
 \end{document}

@@ -1,88 +1,232 @@
-\documentclass{article}
-\usepackage{circuitikz}
+\documentclass[a4paper,landscape,11pt]{article}
+
+\usepackage[margin=11mm]{geometry}
 \usepackage[utf8]{inputenc}
-\title{Kretsskjema for EMP-generator}
-\author{}
-\date{}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows.meta,backgrounds,calc,positioning}
+
+\pagestyle{empty}
+\sisetup{detect-all}
+
+\definecolor{softgray}{RGB}{245,246,248}
+\definecolor{midgray}{RGB}{175,180,188}
+\definecolor{textgray}{RGB}{70,70,70}
+\definecolor{hvred}{RGB}{155,45,45}
+
+\ctikzset{
+  bipoles/length=1.15cm,
+  resistors/scale=0.88,
+  capacitors/scale=0.88,
+  diodes/scale=0.88,
+  inductors/scale=0.92,
+  switches/scale=0.92
+}
 
 \begin{document}
-\maketitle
 
-\begin{circuitikz}[american, scale=1.0, transform shape]
-% Batteri 45V med sikring og hovedbryter
-\draw (0,0) to[battery, l=45\,V] (0,1);
-\draw (0,1) to[fuse, l=F1 (2A)] (0,2);
-\draw (0,2) to[switch, l=S3] (2,2);
-% Ladeknapp S1
-\draw (2,2) to[switch, l=S1] (4,2);
-% Primærvikling (10 t) med dot
-\draw (4,2) to[inductor, l=10\,t, name=prim] (4,0.5);
-\node at (3.5,1.25) {$\bullet$};
-% MOSFET Q1
-\draw (4,0.5) node[nmos, anchor=drain] (Q1) {};
-\draw (Q1.source) to (0,0);
-% RCD-snubber: diode anode til drain, katode til R2||C2, andre ende til forsyning
-\draw (4,0.5) to[diode, l=D5] (5.5,0.5);
-\draw (5.5,0.5) -- (5.5,1) to[resistor, l=R2] (5.5,2) -- (4,2);
-\draw (5.5,0.5) -- (6,0.5) to[capacitor, l=C2] (6,2) -- (4,2);
-% Tilbakekoblingsvikling (5 t) med dot
-\draw (4,2) -- (7,2) to[inductor, l=5\,t, name=fb] (7,0.5);
-\node at (7.5,1.25) {$\bullet$};
-% Kondensator C3 i serie med tilbakekobling
-\draw (7,0.5) to[capacitor, l=C3] (7,-0.5);
-% Gate-nettverk
-\draw (7,-0.5) -- (Q1.gate);
-\draw (Q1.gate) to[resistor, l=R3] (Q1.source);
-% Gate-clamp: zener D2 (katode til gate), diode D4 (katode til gate, anode til zener anode)
-\draw (Q1.gate) to[Zener diode, l=D2] ++(0,-1.5) to[diode, l=D4] (Q1.source);
+\begin{center}
+{\LARGE\bfseries Koblingsskjema}\par
+\vspace{1mm}
+{\small 45 V selvoscillerende flyback-lader med 450 V kondensator og separat pulsutgang}
+\end{center}
+\vspace{3mm}
+
+\begin{circuitikz}[american, x=0.86cm, y=0.92cm, every node/.style={font=\footnotesize}]
+
+% ---------------------------------------------------------------------------
+% Seksjonsbakgrunner
+% ---------------------------------------------------------------------------
+\begin{scope}[on background layer]
+  \fill[softgray, rounded corners=2mm] (-0.4,-0.65) rectangle (5.25,9.45);
+  \fill[softgray, rounded corners=2mm] (5.55,-0.65) rectangle (14.35,9.45);
+  \fill[softgray, rounded corners=2mm] (14.65,-0.65) rectangle (18.4,9.45);
+  \fill[softgray, rounded corners=2mm] (18.7,-0.65) rectangle (31.1,9.45);
+\end{scope}
+
+\node[font=\bfseries\small, text=textgray] at (2.4,9.1) {45 V inngang};
+\node[font=\bfseries\small, text=textgray] at (9.9,9.1) {Flyback / svitsjing};
+\node[font=\bfseries\small, text=textgray] at (16.5,9.1) {Sekundær / likeretter};
+\node[font=\bfseries\small, text=textgray] at (24.9,9.1) {450 V lagring og utgang};
+
+% ---------------------------------------------------------------------------
+% Felles GND / C1-
+% ---------------------------------------------------------------------------
+\draw[line width=0.75pt] (0.35,0) -- (30.55,0);
+\node[ground] at (0.35,0) {};
+\node[below=1mm, text=textgray] at (2.3,0) {GND / C1$-$};
+
+% ---------------------------------------------------------------------------
+% 1. 45 V inngang
+% ---------------------------------------------------------------------------
+\draw (0.95,0)
+  to[battery, l_={\SI{45}{\volt}}] (0.95,7.75)
+  -- (1.35,7.75)
+  to[fuse, l={F1}] (2.55,7.75)
+  to[switch, l={S3}] (3.75,7.75)
+  to[switch, l={S1}] (4.95,7.75);
+
+
+% ---------------------------------------------------------------------------
+% 2. Primær, Q1 og gatekrets
+% ---------------------------------------------------------------------------
+% Primær
+\draw (4.95,7.75) -- (6.55,7.75)
+  to[inductor, l_={P: 10 t}] (6.55,5.0)
+  -- (6.55,4.72);
+\fill (6.33,7.1) circle (1.35pt);
+
+% MOSFET speilvendt slik at gate peker mot gatekretsen til høyre
+\node[nmos, xscale=-1, anchor=drain] (Q1) at (6.55,4.72) {};
+\draw (Q1.source) -- (6.55,0);
+\node[below left=0mm and 1mm of Q1, align=right] {Q1\\IRFP450};
+
+% Gate-node
+\coordinate (GATE) at (9.05,4.20);
+\draw (Q1.gate) -- (GATE);
+\fill (GATE) circle (1.3pt);
+\node[above=1mm of GATE, text=textgray] {GATE};
+
+% Feedbackvikling og C3
+\draw (4.95,7.75) -- (10.15,7.75)
+  to[inductor, l={FB: 5 t}] (10.15,5.55)
+  to[capacitor, l={C3}] (10.15,4.20)
+  -- (GATE);
+\fill (10.37,6.95) circle (1.35pt);
+
 % Startmotstand
-\draw (4,2) to[resistor, l=R\_start] (Q1.gate);
-% Sekundærvikling (200 t) med dot (motsatt polaritet)
-\draw (0,0) to[inductor, l=200\,t, name=sec] (10,3);
-\node at (5,3.5) {$\bullet$};
-% Likeretterdioder (to i serie)
-\draw (10,3) to[diode, l=D1a] (10,2) to[diode, l=D1b] (10,1);
-% Hovedkondensator C1 (500 V)
-\draw (10,1) to[capacitor, l=C1] (10,0) -- (0,0);
-% Bleeder-motstand
-\draw (10,1) -- (12,1) to[resistor, l=R\_bleed] (12,0) -- (0,0);
-% Utladningskrets
-\draw (10,1) -- (13,1) to[switch, l=S2] (13,0) to[resistor, l=R11] (13,-1) -- (0,-1) -- (0,0);
-% LED-indikator
-\draw (10,1) -- (11,1) to[resistor, l=110\,k$\Omega$] (11,0) to[resistor, l=110\,k$\Omega$] (11,-1) to[led, l=D3] (11,-2) -- (0,-2) -- (0,-1);
-% Gnistgap og spole (serie)
-\draw (10,1) -- (10,2) to[sparkgap, l=G1] (10,3);
-\draw (10,3) -- (12,3) to[inductor, l=L1] (12,1) -- (10,1);
-% Piezo-trigger (isolert)
-\draw (10,2.5) -- (9,2.5) node[left] {Piezo};
-% Jord
-\draw (0,0) node[ground] {};
+\draw (11.75,7.75)
+  to[resistor, l={R$_{start}$}] (11.75,4.20)
+  -- (GATE);
+
+% Gate pulldown
+\draw (9.05,4.20)
+  to[resistor, l_={R3}] (9.05,0);
+
+% Gate clamp
+\draw (9.05,4.20) -- (13.15,4.20)
+  to[Zener diode, l={D2}] (13.15,2.55)
+  to[diode, l={D4}] (13.15,0);
+
+% RCD snubber: drain -> D5 -> R2||C2 -> forsyning
+\coordinate (DRAIN) at (6.55,4.72);
+\draw (DRAIN) -- (7.45,4.72)
+  to[diode, l={D5}] (7.45,5.95)
+  -- (7.85,5.95);
+\draw (7.85,5.95)
+  to[resistor] (7.85,7.75);
+\draw (7.85,5.95) -- (8.85,5.95)
+  to[capacitor] (8.85,7.75);
+\node[left=1mm, text=textgray] at (7.85,6.85) {R2};
+\node[right=1mm, text=textgray] at (8.85,6.85) {C2};
+
+% ---------------------------------------------------------------------------
+% 3. Sekundær og to seriedioder
+% ---------------------------------------------------------------------------
+\draw (15.45,0)
+  to[inductor, l_={S: 200 t}] (15.45,4.95)
+  to[diode, l={D1a}] (15.45,6.35)
+  to[diode, l={D1b}] (15.45,7.75)
+  -- (18.0,7.75);
+\fill (15.23,4.15) circle (1.35pt);
+
+\draw[hvred, line width=0.95pt] (18.0,7.75) -- (30.45,7.75);
+\node[above=2mm, text=hvred, font=\bfseries\footnotesize] at (18.0,7.75)
+  {HV+ ca. 450 V DC};
+
+% ---------------------------------------------------------------------------
+% 4. C1, bleeder, indikator og sikkerhetsutladning
+% ---------------------------------------------------------------------------
+\draw (19.65,7.75)
+  to[capacitor, l={C1}] (19.65,0);
+
+\draw (22.05,7.75)
+  to[resistor, l={R$_{bleed}$}] (22.05,0);
+
+\draw (24.35,7.75)
+  to[resistor, l_={R12a}] (24.35,5.75)
+  to[resistor, l_={R12b}] (24.35,3.75)
+  to[led, l_={D3}] (24.35,1.85)
+  -- (24.35,0);
+\node[text=textgray, align=center] at (24.35,0.65) {ladet-\\indikator};
+
+\draw (26.90,7.75)
+  to[switch, l={S2}] (26.90,5.65)
+  to[resistor, l={R11}] (26.90,2.20)
+  -- (26.90,0);
+
+% ---------------------------------------------------------------------------
+% 5. Pulsbane - separat og tydelig retur til C1-/GND
+% ---------------------------------------------------------------------------
+\draw[hvred, line width=0.9pt] (30.05,7.75)
+  to[sparkgap, l_={G1}] (30.05,5.35)
+  to[inductor, l_={L1}] (30.05,2.15)
+  -- (30.05,0);
+
+\node[text=hvred, font=\bfseries\scriptsize] at (30.0,8.55) {PULSBANE};
+
+% Piezo vises som isolert trigger, ikke som del av PCB-GND
+
+\node[draw=midgray, rounded corners=1mm, fill=white, align=center, inner sep=3pt]
+  (PZ) at (28.45,6.55) {Piezo\\trigger};
+\draw[dashed, draw=midgray, -{Stealth[length=2mm]}]
+  (PZ.east) -- (29.85,6.10);
+
+% ---------------------------------------------------------------------------
+% Små forklarende merker
+% ---------------------------------------------------------------------------
+\draw[dashed, draw=midgray] (6.0,8.45) -- (16.05,8.45);
+\node[fill=softgray, inner sep=1pt, text=textgray] at (11.0,8.45)
+  {T1: 10:200:5};
+
 \end{circuitikz}
 
-\vspace{1cm}
-\textbf{Komponentliste:}
-\begin{itemize}
-\item S3: Hovedbryter (50 V DC)
-\item S1: Ladeknapp (momentan, lavspent)
-\item S2: Utladningsknapp (momentan, min. 450 V DC, 0,5 A)
-\item Q1: IRFP450 N-kanal MOSFET
-\item D1a, D1b: UF4007 (to i serie)
-\item D2: 15 V zenerdiode (BZX55C15)
-\item D3: Grønn LED
-\item D4: 1N4148
-\item D5: UF4007 (snubber)
-\item R\_start: 100 k$\Omega$ / 0,25 W (oppstart)
-\item R2: 10 k$\Omega$ / 0,25 W (snubber)
-\item R3: 10 k$\Omega$ / 0,25 W (gate-utladning)
-\item R11: 1 k$\Omega$ / 25 W (utladning, pulsratet)
-\item R12a, R12b: 110 k$\Omega$ / 1 W (LED)
-\item R\_bleed: 1 M$\Omega$ / 1 W (bleeder)
-\item C1: 100 µF / 500 V (puls-egnet)
-\item C2: 10 nF / 500 V (snubber)
-\item C3: 100 nF / 100 V (DC-blokkering gate)
-\item T1: Ferritttransformator (E20/10/6, N27, 0.1 mm luftgap, 10:200:5)
-\item G1: Trigget gnistgap (wolfram, ~0,5 mm, triggerelektrode)
-\item L1: Flat spiralspole (4 vindinger, 10 AWG)
-\item F1: 2 A sikring
-\end{itemize}
+\vspace{4mm}
+\noindent
+\begin{tabular}{@{}p{0.31\textwidth}p{0.32\textwidth}p{0.32\textwidth}@{}}
+\textbf{Ladesiden} & \textbf{450 V-siden} & \textbf{Utladning / puls} \\
+F1, S3 og S1 mater T1/P. Q1 svitsjer primæren. T1/FB, C3 og R$_{start}$ driver gatekretsen; R3 og D2/D4 beskytter gaten. &
+T1/S likerettes av D1a og D1b og lader C1. R$_{bleed}$ og LED-grenen ligger permanent over C1. &
+S2 + R11 er manuell utladning. G1 + L1 er en egen pulsgren fra C1+ tilbake til C1-/GND. Piezo-triggeren er vist separat. \\
+\end{tabular}
+
+\newpage
+\section*{Komponentoversikt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\bfseries}p{2.2cm}p{5.0cm}p{12.5cm}@{}}
+Ref. & Komponent & Verdi / type \\
+\hline
+F1 & Sikring & 2 A \\
+S3 & Hovedbryter & 50 V DC \\
+S1 & Ladeknapp & momentan, lavspent \\
+S2 & Utladningsknapp & momentan, minst 450 V DC, 0.5 A \\
+Q1 & N-kanal MOSFET & IRFP450 \\
+D1a, D1b & Hurtigdioder & UF4007, to i serie \\
+D2 & Zenerdiode & BZX55C15, 15 V \\
+D3 & LED & grønn \\
+D4 & Småsignaldiode & 1N4148 \\
+D5 & Snubberdiode & UF4007 \\
+R$_{start}$ & Oppstartsmotstand & 100 k$\Omega$, 0.25 W \\
+R2 & Snubbermotstand & 10 k$\Omega$, 0.25 W \\
+R3 & Gate-utladning & 10 k$\Omega$, 0.25 W \\
+R11 & Manuell utladning & 1 k$\Omega$, 25 W, pulsratet \\
+R12a, R12b & LED-motstander & 110 k$\Omega$, 1 W hver \\
+R$_{bleed}$ & Bleeder & 1 M$\Omega$, 1 W \\
+C1 & Hovedkondensator & 100 $\mu$F, 500 V, puls-egnet \\
+C2 & Snubberkondensator & 10 nF, 500 V \\
+C3 & Gatekobling & 100 nF, 100 V \\
+T1 & Ferritttransformator & E20/10/6, N27, forhold 10:200:5 \\
+G1 & Trigget gnistgap & wolfram, ca. 0.5 mm, triggerelektrode \\
+L1 & Flat spiralspole & 4 vindinger, 10 AWG \\
+\end{tabular}
+
+\vfill
+\noindent\footnotesize
+\textbf{Merknad:} Skjemaet er ryddet etter prosjektfilene. Pulsbanen er tegnet som
+C1+ $\rightarrow$ G1 $\rightarrow$ L1 $\rightarrow$ C1-/GND, slik monterings- og PCB-beskrivelsen angir.
+
 \end{document}

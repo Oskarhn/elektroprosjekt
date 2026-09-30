@@ -7,7 +7,7 @@
 - **Toppstrøm:** ~2600 A (estimert med antatt motstand 0,1 Ω; må måles)
 - **Magnetfelt i spole sentrum:** ~0,31 T (estimert)
 - **Dempet svingeperiode:** ~68,5 µs
-- **Ladetid:** 5–10 s (forventet med alkaliske 9V-batterier)
+- **Ladetid:** Designmål ca. 5–10 s (må måles)
 - **Strømforsyning:** 5 stk. 9V-batterier i serie (45 V)
 - **PCB-størrelse:** 80 × 80 mm (ladekrets)
 - **Totalvekt:** ca. 0,8 kg

@@ -52,11 +52,11 @@
 
 \## Måling av toppstrøm (valgfritt)
 
-1\. Bruk en Rogowski-spole eller en strømtransformator rundt en av ledningene til spolen.
+\- \*\*Rogowski-spole:\*\* Utgangen er proporsjonal med di/dt. Integrer det kalibrerte signalet for å rekonstruere strømmen.
 
-2\. Koble til oscilloskop og integrer signalet for å finne strømmen.
+\- \*\*Strømtransformator:\*\* Med korrekt byrde og innenfor båndbredde/mettningsgrenser er sekundærstrømmen tilnærmet proporsjonal med primærstrømmen. \*\*Ikke integrer\*\* signalet.
 
-3\. Sammenlign med teoretisk verdi (\~2600 A med antatt R=0.1 Ω).
+\- Sammenlign med teoretisk verdi (\~2600 A med antatt R=0.1 Ω).
 
 
 
@@ -75,4 +75,6 @@
 \- Etter hver test, trykk S2 og verifiser med voltmeter at spenningen er under 10 V før du berører noe.
 
 \- Kontroller at LED-en slukker når spenningen faller, men stol aldri på LED-en alene.
+
+
 

@@ -94,7 +94,7 @@ Skaff alle komponenter iht. BOM. Verktøy: loddebolt, multimeter, oscilloskop (m
 
 2\. Uten batterier, mål motstand mellom høyspentutgang (C1+) og jord. Det skal ikke være kortslutning (0 Ω). Forventet motstand avhenger av målemetode; sjekk at bleeder (1 MΩ) og LED-gren (220 kΩ) er tilkoblet, men ikke forvent en eksakt verdi.
 
-3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V i løpet av 5–10 sekunder. LED skal lyse.
+3\. Sett i batterier, slå på S3. Hold S1 inne og mål spenningen over C1 med et voltmeter (1000 V DC). Spenningen skal stige til 450 V. Designmål for ladetid er 5–10 s; faktisk tid må måles. LED skal lyse.
 
 4\. Slipp S1. Spenningen skal synke gradvis (ikke falle umiddelbart). Trykk S2 for å lade ut. \*\*Hold knappen inne i minst 5 sekunder.\*\* Spenningen skal falle til under 10 V. Verifiser med voltmeter før du berører kretsen.
 

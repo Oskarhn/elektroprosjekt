@@ -83,6 +83,18 @@ Maksimal $di/dt$: $di/dt(0) = V_0/L = 450 / 0.83\times10^{-6} \approx 5.42\times
 
 Faktisk verdi avhenger av nøyaktig geometri og måles.
 
+\section{Ladetid og effektbudsjett}
+Energien som må tilføres kondensatoren er $E_{\text{cap}} = 10.125\,\text{J}$.
+Kontinuerlig last: LED-gren $\approx 0.91\,\text{W}$, bleeder $\approx 0.20\,\text{W}$, totalt $\approx 1.11\,\text{W}$.
+For en ladetid $t_{\text{charge}}$ må gjennomsnittlig HV-uteffekt være minst
+\begin{equation}
+P_{\text{HV,avg}} \approx \frac{E_{\text{cap}}}{t_{\text{charge}}} + P_{\text{cont}}.
+\end{equation}
+Eksempel: For $t_{\text{charge}} = 10\,\text{s}$ trengs $P_{\text{HV,avg}} \approx 1.01\,\text{W} + 1.11\,\text{W} = 2.12\,\text{W}$.
+For $5\,\text{s}$ trengs $\approx 3.14\,\text{W}$.
+Dette er før tap i omformeren. Faktisk ladetid må måles.
+
+
 \section{Komponentpåkjenninger}
 
 \subsection{Dioder}

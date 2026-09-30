@@ -8,15 +8,9 @@
 
 \- \*\*Størrelse:\*\* 80 × 80 mm, dobbeltsidig FR4, 1.6 mm tykkelse, 35 µm kobber.
 
-
-
 \- \*\*Isolasjonsavstand:\*\* Minst 2 mm krypestrøm for spor >100 V, men endelig avstand må velges iht. gjeldende standard (f.eks. IPC-2221) for 450 V arbeidsspenning.
 
-
-
 \- \*\*Sporbredde for høye strømmer:\*\* Minst 2 mm for primærkretsen (batteri, MOSFET, transformator).
-
-
 
 \- \*\*Jordplan:\*\* Solid jordplan på bunnsiden for ladekretsen, med utsparinger under høyspentkomponenter.
 
@@ -110,8 +104,6 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til 
 
 \- MOSFET Q1 kan bli varm under kontinuerlig lading. Fest en liten kjøleribbe (f.eks. 20 × 20 mm) med varmeledende lim. Sørg for luftstrøm i kabinettet.
 
-
-
 \- Utladningsmotstand R11 (1 kΩ / 25 W) monteres utenfor PCB på en metallplate eller kjøleprofil, da den kan bli varm under utladning.
 
 
@@ -122,15 +114,9 @@ For å måle utgangsspenningen trygt med et vanlig multimeter, kan du legge til 
 
 \- \*\*Hovedkondensator C1:\*\* Bruk en snap-in kondensator og koble den med korte, tykke ledninger (minst 2.5 mm²) direkte til skrueterminalene på PCB.
 
-
-
 \- \*\*Gnistgap G1:\*\* Monteres på et separat brett nær spolen. Koble den ene siden til C1 pluss (via tykk ledning) og den andre til spolen.
 
-
-
 \- \*\*Spole L1:\*\* Loddes direkte til gnistgapets utgangselektrode og jord (C1 minus) med tykke ledninger.
-
-
 
 \- \*\*Piezo-trigger:\*\* To ledninger trekkes fra piezo-elementet i håndtaket til triggerelektroden i gnistgapet. Hold triggerkretsen isolert fra PCB-jord for å unngå støy.
 

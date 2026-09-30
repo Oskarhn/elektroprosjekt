@@ -12,15 +12,9 @@ Vi har valgt en kondensatorbank (én stor kondensator) med et trigget gnistgap. 
 
 \- \*\*Kontrollert utløsning:\*\* En piezoelektrisk tenner ioniserer gapet uavhengig av spenningen, slik at vi kan fyre når vi vil.
 
-
-
 \- \*\*Høy strøm:\*\* En 100 µF kondensator gir \~2600 A ved 450 V, noe som gir et kraftig magnetfelt.
 
-
-
 \- \*\*Repeterbarhet:\*\* Ladekretsen lader kondensatoren på noen sekunder; skuddtakten bestemmes av ladetiden.
-
-
 
 \- \*\*Håndholdbarhet:\*\* Komponentene er kompakte og lette.
 
@@ -104,19 +98,11 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 \- \*\*Kondensator:\*\* 100 µF, 500 V. Må ha lav ESR og tåle høye pulsstrømmer. Fotoflash-type anbefales, men egnethet må verifiseres.
 
-
-
 \- \*\*MOSFET:\*\* IRFP450 (500 V, 14 A) er en robust MOSFET. Drain-transient må måles for å bekrefte margin.
-
-
 
 \- \*\*Diode D1:\*\* To UF4007 i serie for å oppnå nødvendig sperrespenning (>1350 V). Transientdeling må verifiseres.
 
-
-
 \- \*\*Gnistgap:\*\* Wolframelektroder fra TIG-sveising er ideelle på grunn av høy smeltetemperatur og god erosjonsmotstand.
-
-
 
 \- \*\*Spole:\*\* 10 AWG emaljert kobbertråd gir lav motstand og høy strømtåleevne.
 
@@ -130,11 +116,11 @@ En flat spiralspole (pancake coil) med 4 vindinger er valgt fordi den:
 
 
 
-D2 er en 15 V zenerdiode med katode mot gate og anode mot source. Den begrenser positiv \\(V\_{GS}\\) til omtrent zenerspenningen.
+D2 er en 15 V zenerdiode med katode mot gate og anode mot source. Den begrenser positiv $V\_{GS}$ til omtrent zenerspenningen.
 
 
 
-D4 er en 1N4148 med anode mot source og katode mot gate. Den begrenser negativ \\(V\_{GS}\\) til omtrent ett vanlig diodefall.
+D4 er en 1N4148 med anode mot source og katode mot gate. Den begrenser negativ $V\_{GS}$ til omtrent ett vanlig diodefall.
 
 
 
@@ -160,19 +146,11 @@ D2 og D4 skal altså ikke stå i serie.
 
 \- \*\*Manuell utladning:\*\* En trykknapp med 1 kΩ / 25 W motstand (pulsratet) lar brukeren lade ut kondensatoren raskt.
 
-
-
 \- \*\*Passiv utladning:\*\* En permanent 1 MΩ motstand over C1 sørger for langsom utladning over tid.
-
-
 
 \- \*\*LED-indikator:\*\* En grønn LED med to 110 kΩ motstander i serie lyser når kondensatoren er ladet. Lysstyrken varierer med spenningen. \*\*LED-en er ikke en pålitelig indikator for utladet tilstand.\*\*
 
-
-
 \- \*\*Sikring:\*\* En 2 A sikring i batterikretsen beskytter mot kortslutning.
-
-
 
 \- \*\*Manglende automatisk spenningsgrense:\*\* Nåværende versjon stopper ikke automatisk ladingen ved 450 V. Ladespenningen må derfor overvåkes kontinuerlig under testing.
 
